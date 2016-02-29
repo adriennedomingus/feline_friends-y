@@ -1,5 +1,8 @@
 <div class="all_cats">
   <% @cats.each do |cat| %>
     <%= cat.name %>
+    <%= cat.description %>
+    <%= cat.format_price %>
+    <%= image_tag cat.image %>
   <% end %>
 </div>

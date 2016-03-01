@@ -1,6 +1,6 @@
 class Cart
   include ActionView::Helpers::NumberHelper
-  attr_reader :contents
+  attr_reader :contents, :double_click
 
   def initialize(initial_contents)
     @contents = initial_contents || {}
@@ -25,5 +25,13 @@ class Cart
 
   def remove_cat(cat_id)
     contents.delete(cat_id.to_s)
+  end
+
+  def double_click?(cat_id)
+    if contents[cat_id.to_s].nil? || contents[cat_id.to_s] == 1
+      return false
+    else
+      return true
+    end
   end
 end

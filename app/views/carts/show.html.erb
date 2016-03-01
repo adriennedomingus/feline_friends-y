@@ -6,10 +6,4 @@
       Total Price: <%= @cart.total_price %>
     </div>
 </div>
-<% if flash[:alert] %>
-  <div class="alert">
-    <%= raw(flash[:alert])%>
-  </div>
-<% end %>
-
 <%= render "partials/each_cat" %>

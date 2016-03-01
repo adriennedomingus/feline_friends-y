@@ -52,5 +52,14 @@ RSpec.describe Cart, type: :model do
 
       expect(cart.total_price).to eq("$80.00")
     end
+
+    it "can check for double addition to the cart" do
+      cat = create_cats[0]
+      create_categories[0].cats << cat
+      cart = Cart.new({})
+      cart.add_cat(cat.id)
+      cart.add_cat(cat.id)
+      expect(cart.double_click?(cat.id)).to eq(true)
+    end
   end
 end

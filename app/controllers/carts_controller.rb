@@ -1,9 +1,10 @@
 class CartsController < ApplicationController
-  include ActionView::Helpers::UrlHelper
   def create
     cat = Cat.find(params[:cat_id])
     @cart.add_cat(cat.id)
     session[:cart] = @cart.contents
+    message = "You have already added #{cat.name} to your cart!"
+    flash[:alert] = message if @cart.double_click?(cat.id)
     redirect_to cats_path
   end
 

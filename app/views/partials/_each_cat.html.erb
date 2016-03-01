@@ -10,10 +10,13 @@
             <p>Name: <%= cat.name %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %></p>
+            <% if !current_page?('/cart') %>
+              <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id) %></p>
+            <% end %>
           </div>
           <div class="col m12">
             <p>Description: <%= cat.description %></p>
-          </div>
+          </div> 
         </div>
       </div>
       <% end %>

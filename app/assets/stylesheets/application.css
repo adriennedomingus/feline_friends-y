@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+.cat_image {
+  padding-top: 3px;
+  width: 150px;
+}
+
+.each_cat {
+  border: 1px solid grey;
+  margin: 10px 0px 10px 0px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.each_cat_p {
+  margin: 0px;
+}
+
+.spacer {
+  height: 100px;
+}
+
+#crusted_mud {
+  background-color: rgb(127, 199, 175);
+}
+
+#baby_pink {
+  background-color: rgb(255, 158, 157);
+}
+
+p {
+  margin-top: 0px;
+  padding-top: 0px;
+}

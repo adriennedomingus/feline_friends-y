@@ -41,3 +41,8 @@
 #baby_pink {
   background-color: rgb(255, 158, 157);
 }
+
+p {
+  margin-top: 0px;
+  padding-top: 0px;
+}

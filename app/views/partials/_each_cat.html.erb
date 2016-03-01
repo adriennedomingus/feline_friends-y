@@ -6,17 +6,20 @@
           <div class="col m6 cat_image_div">
             <%= image_tag cat.image, class: "cat_image" %>
           </div>
-          <div class="col m6 each_cat_p">
-            <p>Name: <%= cat.name %></p>
+          <div class="col m6">
+            <p class="each_cat_p">Name: <%= cat.name %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %></p>
             <% if !current_page?('/cart') %>
-              <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id) %></p>
+              <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), id: "crusted_mud", class: "button btn" %></p>
+            <% end %>
+            <% if current_page?('/cart') %>
+              <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete", id: "crusted_mud", class: "button btn" %></p>
             <% end %>
           </div>
           <div class="col m12">
             <p>Description: <%= cat.description %></p>
-          </div> 
+          </div>
         </div>
       </div>
       <% end %>

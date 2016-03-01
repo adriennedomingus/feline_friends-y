@@ -22,7 +22,7 @@
 .each_cat {
   border: 1px solid grey;
   margin: 10px 0px 10px 0px;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
 }
 
@@ -34,6 +34,17 @@
   height: 100px;
 }
 
+.landing_container {
+  height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.landing_div {
+  text-align: center;
+  margin: 25%;
+}
+
 #crusted_mud {
   background-color: rgb(127, 199, 175);
 }
@@ -42,7 +53,18 @@
   background-color: rgb(255, 158, 157);
 }
 
-p {
-  margin-top: 0px;
-  padding-top: 0px;
+#logo_image {
+  height: 65px;
+}
+
+.alert {
+  background-color: #c8e6c9;
+  border: 1px solid #43a047;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.cart_total {
+  margin-top: 70px;
+  font-size: 1.5em;
 }

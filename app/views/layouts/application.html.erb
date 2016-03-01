@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FelineFriendsY</title>
+  <title>Feline Friends-y</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <%= stylesheet_link_tag    'application', media: 'all' %>
 
@@ -13,12 +13,12 @@
   <nav id="baby_pink">
     <div class="container">
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Feline Friends-y</a>
+        <%= link_to image_tag("paw_print.png", id: "logo_image"), "/" %>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">Home</a></li>
+          <!-- <li><a href="#">Login</a></li> -->
+          <!-- <li><a href="#">Signup</a></li> -->
           <li><a href="<%= cats_path %>">Cats</a></li>
-          <li><a href="<%= cart_path %>">Cart</a></li>
-
+          <li><a href="<%= cart_path %>">Cart: <%= @cart.contents.count %></a></li>
         </ul>
       </div>
     </div>

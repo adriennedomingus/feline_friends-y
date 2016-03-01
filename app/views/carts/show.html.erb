@@ -1,3 +1,15 @@
-<h1>Your Cart</h1>
+<div class="row">
+    <div class="col m9">
+      <h1>Your Cart</h1>
+    </div>
+    <div class="col m3 cart_total">
+      Total Price: <%= @cart.total_price %>
+    </div>
+</div>
+<% if flash[:alert] %>
+  <div class="alert">
+    <%= raw(flash[:alert])%>
+  </div>
+<% end %>
+
 <%= render "partials/each_cat" %>
-Total Price: <%= @cart.total_price %>

@@ -15,7 +15,7 @@ RSpec.feature "user can remove cats from cart" do
 
     visit cats_path
     click_on "Add to Cart"
-    click_on "Cart"
+    click_on "Cart: 1"
 
     visit "/cart"
 

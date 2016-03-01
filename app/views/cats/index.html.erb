@@ -1,8 +1,4 @@
-<div class="all_cats">
-  <% @cats.each do |cat| %>
-    <%= cat.name %>
-    <%= cat.description %>
-    <%= cat.format_price %>
-    <%= image_tag cat.image %>
-  <% end %>
-</div>
+<h1>All the cats</h1>
+<%= render "partials/category_drop" %>
+<%= render "partials/each_cat" %>
+<div class="spacer"></div>

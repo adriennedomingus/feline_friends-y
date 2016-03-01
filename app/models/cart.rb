@@ -19,7 +19,11 @@ class Cart
     if !total.empty?
       number_to_currency(total.reduce(:+) / 100.00)
     else
-      0
+      "$0.00"
     end
+  end
+
+  def remove_cat(cat_id)
+    contents.delete(cat_id.to_s)
   end
 end

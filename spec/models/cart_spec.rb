@@ -17,6 +17,16 @@ RSpec.describe Cart, type: :model do
       expect(cart.contents).to eq("1" => 2, "2" => 1)
     end
 
+    it "can remove a cat" do
+      cart = Cart.new("1" => 1)
+
+      cart.add_cat(1)
+      cart.add_cat(2)
+      cart.remove_cat(2)
+
+      expect(cart.contents).to eq("1" => 2)
+    end
+
     it "can total the price" do
       path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
       category = Category.create(name: "Fluffy")

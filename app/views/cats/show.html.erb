@@ -1,0 +1,20 @@
+<div class="all_cats">
+  <div class="row">
+      <div class="col m6">
+        <div class="each_cat">
+          <div class="col m6 cat_image_div">
+            <%= image_tag @cat.image, class: "cat_image" %>
+          </div>
+          <div class="col m6 each_cat_p">
+            <p>Name: <%= @cat.name %></p>
+            <p>Age: <%= @cat.age %></p>
+            <p>Price: <%= @cat.format_price %></p>
+            <p><%= button_to "Add to Cart", carts_path(cat_id: @cat.id) %></p>
+          </div>
+          <div class="col m12">
+            <p>Description: <%= @cat.description %></p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

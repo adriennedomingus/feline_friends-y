@@ -13,10 +13,13 @@
             <% if !current_page?('/cart') %>
               <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id) %></p>
             <% end %>
+            <% if current_page?('/cart') %>
+              <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete" %></p>
+            <% end %>
           </div>
           <div class="col m12">
             <p>Description: <%= cat.description %></p>
-          </div> 
+          </div>
         </div>
       </div>
       <% end %>

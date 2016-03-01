@@ -16,6 +16,10 @@ class Cart
       cat = Cat.find(cat.to_i)
       cat.price * count
     end
-    number_to_currency(total.reduce(:+) / 100.00)
+    if !total.empty?
+      number_to_currency(total.reduce(:+) / 100.00)
+    else
+      0
+    end
   end
 end

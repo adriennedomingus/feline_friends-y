@@ -1,9 +1,3 @@
-
-<%# @cart.contents.each do |cat, count| %>
-  <%# cat = Cat.find(cat.to_i) %>
-  <%#= cat.name %>
-  <%#= cat.description %>
-  <%#= cat.format_price %>
-<%# end %>
+<h1>Your Cart</h1>
 <%= render "partials/each_cat" %>
 Total Price: <%= @cart.total_price %>

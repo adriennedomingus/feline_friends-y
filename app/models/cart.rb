@@ -13,17 +13,18 @@ class Cart
 
   def total_price
     total = contents.map do |cat, count|
-      cat = Cat.find(cat.to_i)
-      cat.price * count
+      Cat.find(cat.to_i).price
     end
-    if !total.empty?
-      number_to_currency(total.reduce(:+) / 100.00)
-    else
-      "$0.00"
-    end
+    number_to_currency(total.reduce(:+).to_i / 100.00)
   end
 
   def remove_cat(cat_id)
     contents.delete(cat_id.to_s)
+  end
+
+  def add_contents_to_cart(contents)
+    contents.map do |cat, _|
+      Cat.find(cat.to_i)
+    end
   end
 end

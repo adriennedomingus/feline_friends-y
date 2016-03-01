@@ -14,7 +14,7 @@
               <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), id: "crusted_mud", class: "button btn" %></p>
             <% end %>
             <% if current_page?('/cart') %>
-              <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete" %></p>
+              <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete", id: "crusted_mud", class: "button btn" %></p>
             <% end %>
           </div>
           <div class="col m12">

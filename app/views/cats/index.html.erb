@@ -1,8 +1,11 @@
+<%= link_to "Cart", cart_path %>
+
 <div class="all_cats">
   <% @cats.each do |cat| %>
     <%= cat.name %>
     <%= cat.description %>
     <%= cat.format_price %>
     <%= image_tag cat.image %>
+    <%= button_to "Add to Cart", carts_path(cat_id: cat.id) %>
   <% end %>
 </div>

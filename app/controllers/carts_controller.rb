@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::UrlHelper
+  include CartsHelper
   def create
     cat = Cat.find(params[:cat_id])
     @cart.add_cat(cat.id)
@@ -8,11 +9,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cats = []
-    @cart.contents.each do |cat, _|
-      @cats << Cat.find(cat.to_i)
-    end
-    @cats
+    @cats = @cart.add_contents_to_cart(@cart.contents)
   end
 
   def destroy
@@ -20,9 +17,5 @@ class CartsController < ApplicationController
     @cart.remove_cat(params[:cat_id])
     flash[:alert] = "Successfully removed #{path(cat)} from cart"
     redirect_to cart_path
-  end
-
-  def path(cat)
-    "<a href=\"/cats/#{cat.id}\">#{cat.name}</a>"
   end
 end

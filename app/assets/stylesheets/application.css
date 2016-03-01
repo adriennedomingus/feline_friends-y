@@ -22,7 +22,7 @@
 .each_cat {
   border: 1px solid grey;
   margin: 10px 0px 10px 0px;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
 }
 
@@ -34,10 +34,25 @@
   height: 100px;
 }
 
+.landing_container {
+  height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.landing_div {
+  text-align: center;
+  margin: 25%;
+}
+
 #crusted_mud {
   background-color: rgb(127, 199, 175);
 }
 
 #baby_pink {
   background-color: rgb(255, 158, 157);
+}
+
+#logo_image {
+  height: 65px;
 }

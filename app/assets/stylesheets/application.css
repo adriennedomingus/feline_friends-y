@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+.cat_image {
+  padding-top: 3px;
+  width: 100px;
+}
+
+.each_cat {
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0px;
+}

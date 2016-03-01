@@ -2,16 +2,50 @@
 <html>
 <head>
   <title>FelineFriendsY</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  
   <%= javascript_include_tag 'application' %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <div class="container">
 
-<%= yield %>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Feline Friends-y</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Cats</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+  <footer class="page-footer">
+     <div class="container">
+       <div class="row">
+         <div class="col l6 s12">
+           <h5 class="white-text">About</h5>
+           <p class="grey-text text-lighten-4">The only website where you can rent your best friend.</p>
+         </div>
+         <div class="col l4 offset-l2 s12">
+           <br>
+           <br>
+         </div>
+       </div>
+     </div>
+     <div class="footer-copyright">
+       <div class="container">
+       © 2016 Crazy Cat Ladies
+       </div>
+     </div>
+   </footer>
 
 </body>
 </html>

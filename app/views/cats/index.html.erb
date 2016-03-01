@@ -1,8 +1,24 @@
-<div class="all_cats">
-  <% @cats.each do |cat| %>
-    <%= cat.name %>
-    <%= cat.description %>
-    <%= cat.format_price %>
-    <%= image_tag cat.image %>
-  <% end %>
+<h1>All the cats</h1>
+
+<div class="container all_cats">
+  <div class="row">
+    <% @cats.each do |cat| %>
+      <div class="col m5 offset-m1 each_cat">
+        <div class="col m4">
+          <%= image_tag cat.image, class: "cat_image" %>
+        </div>
+        <div class="col m8">
+          <p>
+              Name: <%= cat.name %>
+          </p>
+          <p>
+            <%= cat.format_price %>
+          </p>
+          <p>
+              Description: <%= cat.description %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </div>

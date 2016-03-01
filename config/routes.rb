@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create]
   resources :users, only: [:new, :create]
+  resources :orders, only: [:index]
 
   get "/cart", to: "carts#show"
   delete "/cart", to: "carts#destroy"

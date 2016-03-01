@@ -30,6 +30,12 @@
   </nav>
 
 <div class="container">
+  <% flash.each do |type, message| %>
+    <div class="<%= type %>">
+      <%= raw(message)%>
+    </div>
+  <% end %>
+
   <%= yield %>
 </div>
 

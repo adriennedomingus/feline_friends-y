@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   resources :categories, only: [:show], param: :name
 
   resources :carts, only: [:create]
+  resources :users, only: [:new, :create]
+
   get "/cart", to: "carts#show"
   delete "/cart", to: "carts#destroy"
+  get "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
+  get "/dashboard", to: "dashboard#show"
 end

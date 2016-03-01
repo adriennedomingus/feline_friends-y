@@ -1,0 +1,21 @@
+<div class="all_cats">
+  <div class="row">
+    <% @cats.each do |cat| %>
+      <div class="col m6">
+        <div class="each_cat">
+          <div class="col m6 cat_image_div">
+            <%= image_tag cat.image, class: "cat_image" %>
+          </div>
+          <div class="col m6 each_cat_p">
+            <p>Name: <%= cat.name %></p>
+            <p>Age: <%= cat.age %></p>
+            <p>Price: <%= cat.format_price %></p>
+          </div>
+          <div class="col m12">
+            <p>Description: <%= cat.description %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

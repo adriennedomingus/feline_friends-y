@@ -1,3 +1,4 @@
-<% @cats.each do |cat| %>
-  <%= cat.name %>
-<% end %>
+<h1><%= @category.name %> cats</h1>
+<%= render "partials/category_drop" %>
+<%= render "partials/each_cat" %>
+<div class="spacer"></div>

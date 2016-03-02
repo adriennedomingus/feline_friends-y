@@ -1,0 +1,9 @@
+<h1>Order id: <%= @order.id %></h1>
+<p>
+  <%= "Order status: #{@order.status}, Order price: #{@order.total}, Order placed at: #{@order.placed_at}" %>
+</p>
+
+<% @order.cats.each do |cat| %>
+  <%= link_to cat.name, cat_path(cat.id)%>
+  <%= "Total price: #{cat.format_price}" %>
+<% end %>

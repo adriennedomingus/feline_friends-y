@@ -2,6 +2,8 @@ class Cat < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
   belongs_to :category
+  has_many :cat_orders
+  has_many :orders, through: :cat_orders
   validates :name, presence: true
   validates :price, presence: true
   validates :description, presence: true

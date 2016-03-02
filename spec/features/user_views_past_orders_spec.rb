@@ -11,9 +11,9 @@ RSpec.feature "user views all past orders" do
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(user)
 
-    order_1 = user.orders.create
-    order_2 = user.orders.create
-    order_3 = user2.orders.create
+    order_1 = user.orders.create(status: 0)
+    order_2 = user.orders.create(status: 0)
+    order_3 = user2.orders.create(status: 0)
 
     visit "/orders"
 

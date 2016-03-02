@@ -1,4 +1,38 @@
 module SpecHelpers
+  def create_integration
+    user = create_users[0]
+    order = create_orders[0]
+    category = create_categories[0]
+    cat = create_cats[0]
+    cat2 = create_cats[1]
+    cat.update(category_id: category.id)
+    cat2.update(category_id: category.id)
+    CatOrder.create(order_id: order.id, cat_id: cat.id)
+    CatOrder.create(order_id: order.id, cat_id: cat2.id)
+    user.orders << order
+
+    [user, order, cat, cat2]
+  end
+
+  def create_orders
+  [
+      Order.create(status: 0),
+      Order.create(status: 0),
+      Order.create(status: 0),
+    ]
+  end
+
+  def create_users
+    [
+      User.create(username: "adrienne",
+                  password: "password",
+                  name: "Adrienne"),
+      User.create(username: "chelsea",
+                  password: "password",
+                  name: "Chelsea")
+    ]
+  end
+
   def create_cats
     path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
     [

@@ -1,0 +1,17 @@
+<h1>Order id: <%= @order.id %></h1>
+<p>
+  <%= "Order status: #{@order.status}, Order price: #{@order.total}, Order placed at: #{@order.format_time(@order.created_at)}" %>
+</p>
+
+<% if @order.cancelled_at %>
+  Cancelled on: <%= @order.format_time(@order.cancelled_at)%>
+<% end %>
+
+<% if @order.returned_at %>
+  Returned on: <%= @order.format_time(@order.returned_at) %>
+<% end %>
+
+<% @order.cats.each do |cat| %>
+  <%= link_to cat.name, cat_path(cat.id)%>
+  <%= "Total price: #{cat.format_price}" %>
+<% end %>

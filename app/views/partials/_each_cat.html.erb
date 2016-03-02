@@ -10,7 +10,7 @@
             <p class="each_cat_p">Name: <%= cat.name %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %></p>
-            <% if !current_page?('/cart') %>
+            <% if !current_page?('/cart')  %> 
               <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), id: "crusted_mud", class: "button btn" %></p>
             <% end %>
             <% if current_page?('/cart') %>

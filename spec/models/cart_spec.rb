@@ -28,46 +28,20 @@ RSpec.describe Cart, type: :model do
     end
 
     it "can total the price" do
-      path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
-      category = Category.create(name: "Fluffy")
-      category.cats.create(
-        name: "Fido",
-        age: 2,
-        description: "Actually a dog",
-        image: path,
-        price: 2000)
-
-      category.cats.create(
-        name: "Mena",
-        age: 2,
-        description: "Mine",
-        image: path,
-        price: 3000)
+      create_cats
 
       cart = Cart.new({})
 
       cart.add_cat(Cat.first.id)
       cart.add_cat(Cat.last.id)
 
-      expect(cart.total_price).to eq("$50.00")
+      expect(cart.total_price).to eq("$60.00")
     end
 
     it "can add contents to cart" do
-      path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
-      category = Category.create(name: "Fluffy")
-      cat1 = category.cats.create(
-        name: "Fido",
-        age: 2,
-        description: "Actually a dog",
-        image: path,
-        price: 2000)
+      cat1 = create_cats[:cat1]
+      cat2 = create_cats[:cat2]
 
-      cat2 = category.cats.create(
-        name: "Mena",
-        age: 2,
-        description: "Mine",
-        image: path,
-        price: 3000)
       cart = Cart.new({})
 
       cart.add_cat(cat1.id)
@@ -76,12 +50,11 @@ RSpec.describe Cart, type: :model do
       cats = cart.add_contents_to_cart(cart.contents)
 
       expect(cats.first.name).to eq("Fido")
-      expect(cats.last.name).to eq("Mena")
+      expect(cats.last.name).to eq("Caia")
     end
 
     it "can check for double addition to the cart" do
-      cat = create_cats[0]
-      create_categories[0].cats << cat
+      cat = create_cats[:cat1]
       cart = Cart.new({})
       cart.add_cat(cat.id)
       cart.add_cat(cat.id)

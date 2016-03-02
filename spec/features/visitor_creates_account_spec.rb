@@ -16,11 +16,13 @@ RSpec.feature "visitor creates account" do
     fill_in "Name", with: "Adrienne"
     click_on "Sign Up"
 
+    User.find_by(username: "adrienne")
+
     expect(current_path).to eq(dashboard_path)
 
     within(".nav-wrapper") do
       expect(page).to have_content("Logged in as adrienne")
-      expect(page).to have_content("Log Out")
+      expect(page).to have_content("Logout")
       expect(page).to_not have_content("Log In")
     end
 

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   get "/cart", to: "carts#show"
   delete "/cart", to: "carts#destroy"
-  get "/login", to: "sessions#create"
-  get "/logout", to: "sessions#destroy"
-  get "/dashboard", to: "dashboard#show"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/dashboard", to: "users#show"
 end

@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
     cats.sum(:price)
   end
 
-  def placed_at
-    created_at.strftime("%b %d, %Y")
+  def format_time(time)
+    time.strftime("%b %d, %Y at %l:%M %p UTC")
   end
 end

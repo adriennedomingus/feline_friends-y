@@ -13,7 +13,8 @@ module SpecHelpers
 
   def create_orders
     {
-      order1: Order.create(status: 1),
+      order1: Order.create(status: 1,
+                           cancelled_at: "2016-03-02 11:10:57 -0700"),
       order2: Order.create(status: 0),
       order3: Order.create(status: 0),
     }
@@ -48,35 +49,35 @@ module SpecHelpers
   def create_cats
     {
       cat1: Cat.create(
-            name: "Fido",
-            age: 2,
-            description: "Actually a dog",
-            image: image_path,
-            price: 2000,
-            category_id: categories[0].id,
-            status: "inactive"),
+        name: "Fido",
+        age: 2,
+        description: "Actually a dog",
+        image: image_path,
+        price: 2000,
+        category_id: categories[0].id,
+        status: "inactive"),
       cat2: Cat.create(
-            name: "Caia",
-            age: 8,
-            description: "Chelsea's other cat",
-            image: image_path,
-            price: 3000,
-            category_id: categories[0].id,
-            status: "active"),
+        name: "Caia",
+        age: 8,
+        description: "Chelsea's other cat",
+        image: image_path,
+        price: 3000,
+        category_id: categories[0].id,
+        status: "active"),
       cat3: Cat.create(
-            name: "Mena",
-            age: 4,
-            description: "Adrienne's cat",
-            image: image_path,
-            category_id: categories[1].id,
-            price: 4000),
+        name: "Mena",
+        age: 4,
+        description: "Adrienne's cat",
+        image: image_path,
+        category_id: categories[1].id,
+        price: 4000),
       cat4: Cat.create(
-            name: "Penny Lane",
-            age: 13,
-            description: "Chelsea's other cat",
-            image: image_path,
-            category_id: categories[1].id,
-            price: 4000)
+        name: "Penny Lane",
+        age: 13,
+        description: "Chelsea's other cat",
+        image: image_path,
+        category_id: categories[1].id,
+        price: 4000)
     }
   end
 

@@ -17,7 +17,8 @@ RSpec.describe Order, type: :model do
     it "knows when the order was placed" do
       _, order = create_integration
 
-      expect(order.placed_at).to eq(order.created_at.strftime("%b %d, %Y"))
+      expect(order.format_time(order.created_at)).
+        to eq(order.created_at.strftime("%b %d, %Y at %l:%M %p UTC"))
     end
   end
 end

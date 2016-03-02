@@ -1,15 +1,8 @@
 require "rails_helper"
 
-RSpec.feature "visitor can view cats" do
-  scenario "visitor can view all cats" do
-    path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
-    category = Category.create(name: "Fluffy")
-    category.cats.create(
-      name: "Fido",
-      age: 2,
-      description: "Actually a dog",
-      image: path,
-      price: 2000)
+RSpec.feature "visitor can add cats to cart" do
+  scenario "visitor can add cat to cart" do
+    create_cat
 
     visit cats_path
     click_on "Add to Cart"

@@ -8,14 +8,14 @@ RSpec.describe Order, type: :model do
 
   context "total sale" do
     it "totals the line items" do
-      user, order, cat, cat2 = create_integration
+      _, order, cat, cat2 = create_integration
       expect(order.total).to eq(cat.price + cat2.price)
     end
   end
 
   context "placed at" do
     it "knows when the order was placed" do
-      user, order, cat, cat2 = create_integration
+      _, order = create_integration
 
       expect(order.placed_at).to eq(order.created_at.strftime("%b %d, %Y"))
     end

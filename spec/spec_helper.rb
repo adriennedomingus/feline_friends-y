@@ -15,8 +15,8 @@ module SpecHelpers
   end
 
   def create_orders
-  [
-      Order.create(status: 0),
+    [
+      Order.create(status: 1),
       Order.create(status: 0),
       Order.create(status: 0),
     ]
@@ -41,13 +41,15 @@ module SpecHelpers
         age: 2,
         description: "Actually a dog",
         image: path,
-        price: 2000),
+        price: 2000,
+        status: "inactive"),
       Cat.create(
         name: "Caia",
         age: 8,
         description: "Chelsea's other cat",
         image: path,
-        price: 3000),
+        price: 3000,
+        status: "active"),
       Cat.create(
         name: "Mena",
         age: 4,

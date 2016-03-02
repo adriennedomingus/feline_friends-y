@@ -1,6 +1,6 @@
 RSpec.feature "User tries to add a specific cat more than once to the cart" do
   scenario "they see a flash notice of cannot add to cart" do
-    cat = create_cats[0]
+    cat = create_cats[1]
     create_categories[0].cats << cat
 
     visit "/cats"

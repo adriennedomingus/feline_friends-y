@@ -2,17 +2,14 @@ require "rails_helper"
 
 RSpec.feature "user views all past orders" do
   scenario "user views all past orders" do
-    user = User.create(username: "adrienne",
-                       password: "password",
-                       name: "Adrienne")
-    user2 = User.create(username: "chelsea",
-                        password: "password",
-                        name: "Chelsea")
-    allow_any_instance_of(ApplicationController).
-      to receive(:current_user).and_return(user)
+    user1 = create_users[:user1]
+    user2 = create_users[:user2]
 
-    order_1 = user.orders.create(status: 0)
-    order_2 = user.orders.create(status: 0)
+    allow_any_instance_of(ApplicationController).
+      to receive(:current_user).and_return(user1)
+
+    order_1 = user1.orders.create(status: 0)
+    order_2 = user1.orders.create(status: 0)
     order_3 = user2.orders.create(status: 0)
 
     visit "/orders"

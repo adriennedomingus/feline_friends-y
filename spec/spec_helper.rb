@@ -1,38 +1,89 @@
 module SpecHelpers
-  def create_cats
-    path = "http://www.altpress.com/images/uploads/news/Hello_Kißtty.jpg"
-    [
-      Cat.create(
-        name: "Fido",
-        age: 2,
-        description: "Actually a dog",
-        image: path,
-        price: 2000),
-      Cat.create(
-        name: "Caia",
-        age: 8,
-        description: "Chelsea's other cat",
-        image: path,
-        price: 3000),
-      Cat.create(
-        name: "Mena",
-        age: 4,
-        description: "Adrienne's cat",
-        image: path,
-        price: 4000),
-      Cat.create(
-        name: "Penny Lane",
-        age: 13,
-        description: "Chelsea's other cat",
-        image: path,
-        price: 4000)
-    ]
+  def create_integration
+    user = create_users[:user1]
+    order = create_orders[:order1]
+    cat = create_cats[:cat1]
+    cat2 = create_cats[:cat2]
+    CatOrder.create(order_id: order.id, cat_id: cat.id)
+    CatOrder.create(order_id: order.id, cat_id: cat2.id)
+    user.orders << order
+
+    [user, order, cat, cat2]
   end
 
-  def create_categories
-    [Category.create(name: "Fluffy"),
-     Category.create(name: "Friendly"),
-     Category.create(name: "Happy")]
+  def create_orders
+    {
+      order1: Order.create(status: 1),
+      order2: Order.create(status: 0),
+      order3: Order.create(status: 0),
+    }
+  end
+
+  def create_users
+    {
+      user1: User.create(username: "adrienne",
+                         password: "password",
+                         name: "Adrienne"),
+      user2: User.create(username: "chelsea",
+                         password: "password",
+                         name: "Chelsea")
+    }
+  end
+
+  def create_cat
+    Cat.create(
+      name: "Fido",
+      age: 2,
+      description: "Actually a dog",
+      image: image_path,
+      price: 2000,
+      category_id: categories[0].id,
+      status: "inactive")
+  end
+
+  def image_path
+    "http://data.whicdn.com/images/54126468/large.gif"
+  end
+
+  def create_cats
+    {
+      cat1: Cat.create(
+            name: "Fido",
+            age: 2,
+            description: "Actually a dog",
+            image: image_path,
+            price: 2000,
+            category_id: categories[0].id,
+            status: "inactive"),
+      cat2: Cat.create(
+            name: "Caia",
+            age: 8,
+            description: "Chelsea's other cat",
+            image: image_path,
+            price: 3000,
+            category_id: categories[0].id,
+            status: "active"),
+      cat3: Cat.create(
+            name: "Mena",
+            age: 4,
+            description: "Adrienne's cat",
+            image: image_path,
+            category_id: categories[1].id,
+            price: 4000),
+      cat4: Cat.create(
+            name: "Penny Lane",
+            age: 13,
+            description: "Chelsea's other cat",
+            image: image_path,
+            category_id: categories[1].id,
+            price: 4000)
+    }
+  end
+
+  def categories
+    [Category.find_or_create_by(name: "Fluffy"),
+     Category.find_or_create_by(name: "Friendly"),
+     Category.find_or_create_by(name: "Happy")]
   end
 end
 

@@ -81,9 +81,9 @@ module SpecHelpers
   end
 
   def categories
-    [Category.create(name: "Fluffy"),
-     Category.create(name: "Friendly"),
-     Category.create(name: "Happy")]
+    [Category.find_or_create_by(name: "Fluffy"),
+     Category.find_or_create_by(name: "Friendly"),
+     Category.find_or_create_by(name: "Happy")]
   end
 end
 

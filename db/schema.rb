@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301225451) do
+ActiveRecord::Schema.define(version: 20160302183019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cat_orders", force: :cascade do |t|
+    t.integer  "cat_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cat_orders", ["cat_id"], name: "index_cat_orders_on_cat_id", using: :btree
+  add_index "cat_orders", ["order_id"], name: "index_cat_orders_on_order_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -25,20 +35,24 @@ ActiveRecord::Schema.define(version: 20160301225451) do
   create_table "cats", force: :cascade do |t|
     t.string   "name"
     t.string   "age"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "description"
     t.string   "image"
     t.integer  "price"
     t.integer  "category_id"
+    t.string   "status",      default: "active"
   end
 
   add_index "cats", ["category_id"], name: "index_cats_on_category_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "status",       default: 0
+    t.datetime "cancelled_at"
+    t.datetime "returned_at"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -51,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160301225451) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "cat_orders", "cats"
+  add_foreign_key "cat_orders", "orders"
   add_foreign_key "cats", "categories"
   add_foreign_key "orders", "users"
 end

@@ -14,4 +14,8 @@ class Cat < ActiveRecord::Base
   def format_price
     number_to_currency(price / 100.00)
   end
+
+  def self.random_cat
+    all.sample
+  end
 end

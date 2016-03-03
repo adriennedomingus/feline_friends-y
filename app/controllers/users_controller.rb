@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
+      flash.now[:alert] = "Please enter a valid username and password"
       render :new
     end
   end

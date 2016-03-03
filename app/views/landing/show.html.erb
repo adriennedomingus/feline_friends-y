@@ -1,7 +1,7 @@
 <div class="landing_container">
   <div class="landing_div">
     <h1>Feline Friends-y</h1>
-    <%= button_to "Rent a random cat", carts_path(cat_id: Cat.random_cat), id: "crusted_mud", class: "button btn" %>
-    <%= link_to "All the cats", cats_path, id: "crusted_mud", class: "button btn" %>
+    <%= link_to "Rent a random cat", carts_path(cat_id: Cat.random_cat), class: "button btn", method: :post %>
+    <%= link_to "All the cats", cats_path, class: "button btn" %>
   </div>
 </div>

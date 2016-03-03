@@ -41,14 +41,14 @@
       <th> Total price </th>
     </tr>
   </thead>
-  <% @order.cats.each do |cat| %>
   <tbody>
+  <% @order.cats.each do |cat| %>
     <tr>
       <td><%= link_to cat.name, cat_path(cat.id)%></td>
       <td><%= cat.format_price %></td>
     </tr>
-  </tbody>
   <% end %>
+  </tbody>
   </table>
 
 </div>

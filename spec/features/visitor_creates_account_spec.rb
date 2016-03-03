@@ -11,8 +11,9 @@ RSpec.feature "visitor creates account" do
       visit "/"
 
       expect(page).to have_content("Login")
-
-      click_on("Create Account")
+      within(".hide-on-med-and-down") do
+        click_on("Create Account")
+      end
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
       fill_in "Name", with: "Adrienne"
@@ -35,6 +36,7 @@ RSpec.feature "visitor creates account" do
       expect(page).to have_content(cat.name)
     end
   end
+
   context "invalid params" do
     scenario "user does not complete all fields for registration" do
       visit new_user_path

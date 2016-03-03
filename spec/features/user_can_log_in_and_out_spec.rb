@@ -5,16 +5,19 @@ RSpec.feature "user can log in and out" do
     scenario "user logs in and sees user dashboard" do
       create_users[:user1]
 
-      visit root_path
-
+    visit root_path
+    within(".hide-on-med-and-down") do
       click_on "Login"
+    end
 
       expect(current_path).to eq(login_path)
 
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
 
-      click_on "Login Meow!"
+      within(".hide-on-med-and-down") do
+        click_on "Login Meow!"
+      end
 
       expect(current_path).to eq(dashboard_path)
 
@@ -26,14 +29,18 @@ RSpec.feature "user can log in and out" do
 
       visit root_path
 
-      click_on "Login"
+      within(".hide-on-med-and-down") do
+        click_on "Login"
+      end
 
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
 
       click_on "Login Meow!"
 
-      click_on "Logout"
+      within(".hide-on-med-and-down") do
+        click_on "Logout"
+      end
 
       expect(page).to have_content("Login")
       expect(page).to_not have_content("Logout")
@@ -45,7 +52,9 @@ RSpec.feature "user can log in and out" do
 
       visit root_path
 
-      click_on "Login"
+      within(".hide-on-med-and-down") do
+        click_on "Login"
+      end
 
       fill_in "Username", with: "adrienne"
 

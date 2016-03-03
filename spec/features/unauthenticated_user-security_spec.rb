@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "unauthenticated user security" do
   scenario "unauthenticated user cannot view cart contents of another user" do
-    user, order, _ = create_integration
+    user, = create_integration
     user_order_id = user.orders.first.id
 
     visit "/orders"
@@ -12,10 +12,11 @@ RSpec.feature "unauthenticated user security" do
     expect(page).to_not have_content("Order id: #{user_order_id}")
   end
 
-  scenario "unauthenticated user cannot view administrator screens" do
-    # visit "/admin/dashboard"
+  scenario "unauthenticated user cannot view admin dashboard or
+           make themselves an admin" do
+    visit admin_dashboard_path
 
-    # expect(page).to have_content("404")
+    expect(page).to have_content("The page you were looking for doesn't exist")
 
     visit new_user_path
 
@@ -24,14 +25,8 @@ RSpec.feature "unauthenticated user security" do
     fill_in "Name", with: "Adrienne"
     click_on "Sign Up"
 
-    save_and_open_page
+    visit admin_dashboard_path
+
+    expect(page).to have_content("The page you were looking for doesn't exist")
   end
 end
-
-
-# Background: An unauthenticated user and their abilities
-#       As an Unuthenticated User
-#       I cannot view another user's private data, such as current order, etc.
-#       I should be redirected to login when I try to check out.
-#       I cannot view the administrator screens or use administrator functionality.
-#       I cannot make myself an administrator.

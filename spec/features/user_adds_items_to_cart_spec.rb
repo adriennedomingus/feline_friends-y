@@ -2,11 +2,13 @@ require "rails_helper"
 
 RSpec.feature "visitor can add cats to cart" do
   scenario "visitor can add cat to cart" do
-    create_cat
+    cat = create_cat
 
     visit cats_path
     click_on "Add to Cart"
-    click_on "Cart: 1"
+    within(".hide-on-med-and-down") do
+      click_on "Cart: 1"
+    end
 
     expect(current_path).to eq(cart_path)
     expect(page).to have_content("Fido")

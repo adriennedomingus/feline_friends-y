@@ -18,4 +18,12 @@ RSpec.describe Cat, type: :model do
       expect(cat.format_price).to eq("$20.00")
     end
   end
+
+  context "return a random cat" do
+    it "returns a cat" do
+      create_integration
+
+      expect(Cat.random_cat.class).to eq(Cat)
+    end
+  end
 end

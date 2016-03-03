@@ -23,11 +23,7 @@ class Cart
   end
 
   def double_click?(cat_id)
-    if contents[cat_id.to_s].nil? || contents[cat_id.to_s] == 1
-      return false
-    else
-      return true
-    end
+    ![nil, 1].include?(contents[cat_id.to_s])
   end
 
   def add_contents_to_cart(contents)

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :orders, only: [:index, :show, :create]
 
+  namespace "admin" do
+    get "/dashboard", to: "users#show"
+  end
+
   get "/cart", to: "carts#show"
   delete "/cart", to: "carts#destroy"
   get "/login", to: "sessions#new"

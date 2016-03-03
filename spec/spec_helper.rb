@@ -20,6 +20,13 @@ module SpecHelpers
     }
   end
 
+  def create_admin
+    User.create(username: "adrienne",
+                password: "password",
+                name: "Adrienne",
+                role: 1)
+  end
+
   def create_users
     {
       user1: User.create(username: "adrienne",

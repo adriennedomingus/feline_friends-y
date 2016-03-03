@@ -12,8 +12,19 @@ RSpec.feature "unauthenticated user security" do
     expect(page).to_not have_content("Order id: #{user_order_id}")
   end
 
-  scenario "unauthenticated user is " do
+  scenario "unauthenticated user cannot view administrator screens " do
+    # visit "/admin/dashboard"
 
+    # expect(page).to have_content("404")
+
+    visit new_user_path
+
+    fill_in "Username", with: "adrienne"
+    fill_in "Password", with: "password"
+    fill_in "Name", with: "Adrienne"
+    click_on "Sign Up"
+
+    save_and_open_page
   end
 end
 

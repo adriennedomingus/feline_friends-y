@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    render file: "/public/404" unless current_user
+    unless current_user
+      flash[:alert] = "Please log in"
+      redirect_to login_path
+    end
   end
 end

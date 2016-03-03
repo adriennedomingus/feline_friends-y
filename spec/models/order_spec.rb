@@ -9,7 +9,7 @@ RSpec.describe Order, type: :model do
   context "total sale" do
     it "totals the line items" do
       _, order, cat, cat2 = create_integration
-      expect(order.total).to eq(cat.price + cat2.price)
+      expect(order.total).to eq("$50.00")
     end
   end
 

@@ -1,17 +1,54 @@
 <h1>Order id: <%= @order.id %></h1>
-<p>
-  <%= "Order status: #{@order.status}, Order price: #{@order.total}, Order placed at: #{@order.format_time(@order.created_at)}" %>
-</p>
+<div class="order_table">
+  <table class="bordered">
+    <tbody>
+      <tr>
+        <th>Order status:</th>
+        <td><%= @order.status %></td>
+      </tr>
+      <tr>
+        <th>Order price:</th>
+        <td><%= @order.total %></td>
+      </tr>
+      <tr>
+        <th>Order placed at:</th>
+        <td><%= @order.format_time(@order.created_at) %></td>
+      </tr>
+      <% if @order.cancelled_at %>
+      <tr>
+        <th>Cancelled on:</th>
+        <td><%= @order.format_time(@order.cancelled_at)%></td>
+      </tr>
+      <% end %>
+      <% if @order.returned_at %>
+      <tr>
+        <th>Returned on:</th>
+        <td><%= @order.format_time(@order.returned_at) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="spacer">
 
-<% if @order.cancelled_at %>
-  Cancelled on: <%= @order.format_time(@order.cancelled_at)%>
-<% end %>
+</div>
+<h4>Included Cats</h4>
+<div class="order_table">
+  <table class="highlight bordered">
+    <thead>
+    <tr>
+      <th> Cat </th>
+      <th> Total price </th>
+    </tr>
+  </thead>
+  <% @order.cats.each do |cat| %>
+  <tbody>
+    <tr>
+      <td><%= link_to cat.name, cat_path(cat.id)%></td>
+      <td><%= cat.format_price %></td>
+    </tr>
+  </tbody>
+  <% end %>
+  </table>
 
-<% if @order.returned_at %>
-  Returned on: <%= @order.format_time(@order.returned_at) %>
-<% end %>
-
-<% @order.cats.each do |cat| %>
-  <%= link_to cat.name, cat_path(cat.id)%>
-  <%= "Total price: #{cat.format_price}" %>
-<% end %>
+</div>

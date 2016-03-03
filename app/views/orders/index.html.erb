@@ -1,5 +1,8 @@
-<% if !current_user.orders.empty? %>
-  <% current_user.orders.each do |order| %>
-    <%= link_to "Order id: #{order.id}", order_path(order.id) %>
-  <% end %>
-<% end %>
+<h3>Your Orders</h3>
+<div class="collection order_table">
+    <% if !current_user.orders.empty? %>
+      <% current_user.orders.each do |order| %>
+        <%= link_to "Order id: #{order.id}", order_path(order.id), class: "collection-item" %>
+      <% end %>
+    <% end %>
+</div>

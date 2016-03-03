@@ -45,12 +45,16 @@
   margin: 25%;
 }
 
-#crusted_mud {
+.button {
   background-color: rgb(127, 199, 175);
 }
 
 #baby_pink {
   background-color: rgb(255, 158, 157);
+}
+
+#release {
+  background-color: rgb(127, 199, 175);
 }
 
 #logo_image {

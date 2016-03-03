@@ -1,0 +1,9 @@
+<% if current_user %>
+  <li>Logged in as <%= current_user.username %></li>
+  <li><%= link_to "Logout", logout_path, method: "delete"%></li>
+<% else %>
+  <li><a href="<%= login_path %>">Login</a></li>
+  <li><a href="<%= new_user_path %>">Create Account</a></li>
+<% end %>
+<li><a href="<%= cats_path %>">Cats</a></li>
+<li><a href="<%= cart_path %>">Cart: <%= @cart.contents.count %></a></li>

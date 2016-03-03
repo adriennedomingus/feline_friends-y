@@ -14,6 +14,7 @@ RSpec.feature "visitor creates account" do
       within(".hide-on-med-and-down") do
         click_on("Create Account")
       end
+
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
       fill_in "Name", with: "Adrienne"
@@ -31,7 +32,10 @@ RSpec.feature "visitor creates account" do
 
       expect(page).to have_content("Your Orders")
       expect(page).to have_content("Name: Adrienne")
-      click_on "Cart"
+
+      within(".hide-on-med-and-down") do
+        click_on "Cart"
+      end
 
       expect(page).to have_content(cat.name)
     end

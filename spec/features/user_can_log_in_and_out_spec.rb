@@ -15,9 +15,7 @@ RSpec.feature "user can log in and out" do
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
 
-      within(".hide-on-med-and-down") do
-        click_on "Login Meow!"
-      end
+      click_on "Login Meow!"
 
       expect(current_path).to eq(dashboard_path)
 
@@ -25,7 +23,7 @@ RSpec.feature "user can log in and out" do
     end
 
     scenario "user can log out" do
-      create_users[:user1]
+      user = create_users[:user1]
 
       visit root_path
 
@@ -33,10 +31,7 @@ RSpec.feature "user can log in and out" do
         click_on "Login"
       end
 
-      fill_in "Username", with: "adrienne"
-      fill_in "Password", with: "password"
-
-      click_on "Login Meow!"
+      log_in_user(user)
 
       within(".hide-on-med-and-down") do
         click_on "Logout"
@@ -47,7 +42,7 @@ RSpec.feature "user can log in and out" do
     end
   end
   context "invalid params" do
-    scenario 'user does not provide password and is redirected to login' do
+    scenario "user does not provide password and is redirected to login" do
       create_users[:user1]
 
       visit root_path

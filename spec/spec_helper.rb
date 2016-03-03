@@ -31,6 +31,13 @@ module SpecHelpers
     }
   end
 
+  def log_in_user(user)
+    fill_in "Username", with: user.username
+    fill_in "Password", with: "password"
+
+    click_on "Login Meow!"
+  end
+
   def create_cat
     Cat.create(
       name: "Fido",
@@ -76,7 +83,7 @@ module SpecHelpers
         age: 13,
         description: "Chelsea's other cat",
         image: image_path,
-        category_id: categories[1].id,
+        category_id: categories[2].id,
         price: 4000)
     }
   end

@@ -1,35 +1,55 @@
 require "rails_helper"
 
 RSpec.feature "visitor creates account" do
-  scenario "user still has items in cart" do
-    cat = create_cat
+  context "valid params" do
+    scenario "user still has items in cart" do
+      cat = create_cat
 
-    visit cats_path
-    click_on "Add to Cart"
+      visit cats_path
+      click_on "Add to Cart"
 
-    visit "/"
+      visit "/"
 
-    expect(page).to have_content("Login")
-    click_on("Create Account")
-    fill_in "Username", with: "adrienne"
-    fill_in "Password", with: "password"
-    fill_in "Name", with: "Adrienne"
-    click_on "Sign Up"
+      expect(page).to have_content("Login")
 
-    User.find_by(username: "adrienne")
+      click_on("Create Account")
+      fill_in "Username", with: "adrienne"
+      fill_in "Password", with: "password"
+      fill_in "Name", with: "Adrienne"
+      click_on "Sign Up"
 
-    expect(current_path).to eq(dashboard_path)
+      User.find_by(username: "adrienne")
 
-    within(".nav-wrapper") do
-      expect(page).to have_content("Logged in as adrienne")
-      expect(page).to have_content("Logout")
-      expect(page).to_not have_content("Log In")
+      expect(current_path).to eq(dashboard_path)
+
+      within(".nav-wrapper") do
+        expect(page).to have_content("Logged in as adrienne")
+        expect(page).to have_content("Logout")
+        expect(page).to_not have_content("Log In")
+      end
+
+      expect(page).to have_content("Your Orders")
+      expect(page).to have_content("Name: Adrienne")
+      click_on "Cart"
+
+      expect(page).to have_content(cat.name)
     end
+  end
+  context "invalid params" do
+    scenario "user does not complete all fields for registration" do
+      visit new_user_path
 
-    expect(page).to have_content("Your Orders")
-    expect(page).to have_content("Name: Adrienne")
-    click_on "Cart"
+      fill_in "Username", with: "adrienne"
+      fill_in "Name", with: "Adrienne"
 
-    expect(page).to have_content(cat.name)
+      click_on "Sign Up"
+
+      expect(current_path).to eq(users_path)
+
+      within(".flash") do
+        expect(page).to have_content("Please enter
+                                     a valid username and password")
+      end
+    end
   end
 end

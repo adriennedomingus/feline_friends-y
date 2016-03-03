@@ -10,8 +10,13 @@ class OrdersController < ApplicationController
 
   def create
     order = current_user.orders.create
-    order.create_order(@cart)
-    flash[:alert] = "Order was successfully placed"
-    redirect_to "/orders"
+    if !@cart.contents.empty?
+      order.create_order(@cart)
+      flash[:alert] = "Order was successfully placed"
+      redirect_to "/orders"
+    else
+      flash[:alert] = "Your cart is empty"
+      redirect_to cart_path
+    end
   end
 end

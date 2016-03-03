@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
       flash[:alert] = "Order was successfully placed"
       redirect_to "/orders"
     else
-      flash[:alert] = "Your cart is empty"
+      flash[:notice] = "Your cart is empty"
       redirect_to cart_path
     end
   end

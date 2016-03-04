@@ -79,3 +79,11 @@
 #logo_image {
   height: 65px;
 }
+
+.rented {
+  background-color: rgb(127, 199, 175);
+  text-align: center;
+  color: white;
+  height: 37px;
+  line-height: 37px;
+}

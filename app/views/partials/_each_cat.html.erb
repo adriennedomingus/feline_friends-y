@@ -10,8 +10,11 @@
             <p class="each_cat_p">Name: <%= cat.name %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %></p>
-            <% if !current_page?('/cart')  %>
+            <% if !current_page?('/cart') && !cat.rented? %>
               <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), class: "button btn" %></p>
+            <% end %>
+            <% if cat.rented? %>
+              <p class="rented">I've been rented!</p>
             <% end %>
             <% if current_page?('/cart') %>
               <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete", class: "button btn" %></p>

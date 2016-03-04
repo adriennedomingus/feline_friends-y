@@ -63,6 +63,11 @@
   width: 60%;
 }
 
+.error_image {
+  margin-left: 100px;
+  width: 700px;
+}
+
 #baby_pink {
   background-color: rgb(255, 158, 157);
 }

@@ -1,0 +1,41 @@
+<h1>Admin Dashboard</h1>
+
+
+  <table class="bordered order_info returned_cats">
+    <tr>
+      <th>Returned Orders (<%= Order.where(status: 0).count %>)</th>
+    </tr>
+      <% @orders.each do |order| %>
+        <% if order.returned? %>
+          <tr>
+            <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+  </table>
+  <table class="bordered order_info rented_cats">
+    <tr>
+      <th>Rented Orders (<%= Order.where(status: 1).count %>)</th>
+    </tr>
+      <% @orders.each do |order| %>
+        <% if order.rented? %>
+        <tr>
+          <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
+          <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>
+          <td><%= render partial: "partials/order_update", locals: {status: "Cancel", order: order} %></td>
+        </tr>
+        <% end %>
+      <% end %>
+  </table>
+  <table class="bordered order_info cancelled_cats">
+    <tr>
+      <th>Cancelled Orders (<%= Order.where(status: 2).count %>)</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <% if order.cancelled? %>
+        <tr>
+          <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show], param: :name
 
   resources :carts, only: [:create]
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :show, :create]
 
   namespace "admin" do

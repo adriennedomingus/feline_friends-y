@@ -7,7 +7,7 @@ RSpec.feature "visitor can view cats" do
 
     visit cats_path
     within(".all_cats") do
-      expect(page).to have_content("Fido")
+      expect(page).to have_content("Chica")
       expect(page).to have_content("Actually a dog")
       expect(page).to have_content("$20.00")
       expect(page).to have_content("Caia")

@@ -39,8 +39,22 @@ RSpec.describe Cart, type: :model do
     end
 
     it "can add contents to cart" do
-      cat1 = create_cats[:cat1]
-      cat2 = create_cats[:cat2]
+      cat1 = Cat.create(
+        name: "Chica",
+        age: 2,
+        description: "Actually a dog",
+        image: image_path,
+        price: 2000,
+        category_id: categories[0].id,
+        status: "inactive")
+      cat2 = Cat.create(
+        name: "Caia",
+        age: 8,
+        description: "Chelsea's other cat",
+        image: image_path,
+        price: 3000,
+        category_id: categories[0].id,
+        status: "active")
 
       cart = Cart.new({})
 
@@ -49,7 +63,7 @@ RSpec.describe Cart, type: :model do
 
       cats = cart.add_contents_to_cart(cart.contents)
 
-      expect(cats.first.name).to eq("Fido")
+      expect(cats.first.name).to eq("Chica")
       expect(cats.last.name).to eq("Caia")
     end
 

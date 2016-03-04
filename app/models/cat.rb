@@ -4,8 +4,9 @@ class Cat < ActiveRecord::Base
   belongs_to :category
   has_many :cat_orders
   has_many :orders, through: :cat_orders
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :price, presence: true
+  validates_numericality_of :price, greater_than: 0
   validates :description, presence: true
   validates :image, presence: true
   validates :age, presence: true

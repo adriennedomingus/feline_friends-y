@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: [:edit, :update]
   def new
     @user = User.new
   end
@@ -18,7 +19,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    render file: "/public/404" unless current_user == User.find(params[:id])
+    unless current_user == User.find_by(id: params[:id])
+      render file: "/public/404"
+    end
   end
 
   def update

@@ -18,6 +18,11 @@ RSpec.feature "visitor creates account" do
       fill_in "Username", with: "adrienne"
       fill_in "Password", with: "password"
       fill_in "Name", with: "Adrienne"
+      fill_in "Country", with: "United States"
+      fill_in "State", with: "Colorado"
+      fill_in "City", with: "Denver"
+      fill_in "Street", with: "1510 Blake street"
+      fill_in "Zip", with: "80202"
       click_on "Sign Up"
 
       User.find_by(username: "adrienne")

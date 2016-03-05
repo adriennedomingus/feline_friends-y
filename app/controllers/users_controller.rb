@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.address = Address.find_or_create_by(address_params)
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to dashboard_path
@@ -36,6 +38,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :name)
+    params.require(:user).permit(:username, :password, :name, :address)
+  end
+
+  def address_params
+    params[:user].require(:address).permit(:country,
+                                           :state,
+                                           :city,
+                                           :street,
+                                           :zip)
   end
 end

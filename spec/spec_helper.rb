@@ -35,13 +35,13 @@ module SpecHelpers
   end
 
   def create_user_orders
-    user1 = create_users[:user1]
-    user2 = create_users[:user2]
-    user3 = create_users[:user3]
-    order1 =  user1.orders.create(status: 0),
-    order2 = user1.orders.create(status: 1),
-    order3 = user2.orders.create(status: 2),
-    order4 = user3.orders.create(status: 2),
+    user1  = create_users[:user1]
+    user2  = create_users[:user2]
+    user3  = create_users[:user3]
+    order1 = user1.orders.create(status: 0)
+    order2 = user1.orders.create(status: 1)
+    order3 = user2.orders.create(status: 2)
+    order4 = user3.orders.create(status: 2)
     [order1, order2, order3, order4]
   end
 
@@ -54,17 +54,10 @@ module SpecHelpers
 
   def create_admin
     User.create(username: "adrienne",
-                 password: "password",
-                 name: "Adrienne",
-                 role: 1)
+                password: "password",
+                name: "Adrienne",
+                role: 1)
   end
-
-  # def log_in_admin(admin)
-  #   visit "/login"
-  #   fill_in "Username", with: admin.username
-  #   fill_in "Password", with: "password"
-  #   click_on "Login Meow!"
-  # end
 
   def create_cat
     Cat.create(

@@ -11,15 +11,15 @@ RSpec.feature "admin views all orders" do
 
     visit admin_dashboard_path
 
-    within('.rented_cats') do
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+    within('#rented_cats') do
+      expect(page).to have_content("Order id: #{order1.id}")
     end
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
     end
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
     end
@@ -35,15 +35,15 @@ RSpec.feature "admin views all orders" do
 
     visit admin_dashboard_path
 
-    within('.rented_cats') do
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+    within('#rented_cats') do
+      expect(page).to have_content("Order id: #{order1.id}")
     end
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
     end
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
     end
@@ -59,15 +59,15 @@ RSpec.feature "admin views all orders" do
 
     visit admin_dashboard_path
 
-    within('.rented_cats') do
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+    within('#rented_cats') do
+      expect(page).to have_content("Order id: #{order1.id}")
     end
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
     end
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
     end
@@ -83,22 +83,22 @@ RSpec.feature "admin views all orders" do
 
     visit admin_dashboard_path
 
-    within('.rented_cats') do
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+    within('#rented_cats') do
+      expect(page).to have_content("Order id: #{order1.id}")
     end
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
     end
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
     end
 
     click_on "Cancel"
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
       expect(page).to have_content("Order id: #{order1.id}")
@@ -115,38 +115,24 @@ RSpec.feature "admin views all orders" do
 
     visit admin_dashboard_path
 
-    within('.rented_cats') do
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+    within('#rented_cats') do
+      expect(page).to have_content("Order id: #{order1.id}")
     end
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
     end
 
-    within('.cancelled_cats') do
+    within('#cancelled_cats') do
       expect(page).to have_content("Order id: #{order3.id}")
       expect(page).to have_content("Order id: #{order4.id}")
     end
 
     click_on "Return"
 
-    within('.returned_cats') do
+    within('#returned_cats') do
       expect(page).to have_content("Order id: #{order2.id}")
-      expect(page).to have_content("Order id: #{order1.id}")#rented-0, return-1, cancel2
+      expect(page).to have_content("Order id: #{order1.id}")
     end
   end
 end
-
-
-
-# As an Admin
-#       When I visit the dashboard
-#       Then I can see a listing of all orders
-#       And I can see the total number of orders for each status ("Ordered", "Paid", "Cancelled", "Completed")
-#       And I can see a link for each individual order
-#       And I can filter orders to display by each status type  ("Ordered", "Paid", "Cancelled", "Completed")
-#       And I have links to transition the status
-#         - I can click on "cancel" on individual orders which are "rented"
-#return a rented
-#         - I can click on "mark as paid" on orders that are "ordered"
-#         - I can click on "mark as completed" on orders that are "paid"

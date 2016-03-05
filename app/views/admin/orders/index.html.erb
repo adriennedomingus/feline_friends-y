@@ -1,9 +1,16 @@
 <h1>Admin Dashboard</h1>
 
+<a class='dropdown-button btn' id="crusted_mud" data-activates='dropdown1'>Filter by Order Type</a>
+<ul id='dropdown1' class='dropdown-content'>
+    <li><%= link_to "Rented", "#rented_cats" %></li>
+    <li><%= link_to "Returned", "#returned_cats" %></li>
+    <li><%= link_to "Cancelled", "#cancelled_cats" %></li>
+</ul>
 
-  <table class="bordered order_info returned_cats">
+
+  <table id="returned_cats" class="bordered order_info">
     <tr>
-      <th>Returned Orders (<%= Order.where(status: 0).count %>)</th>
+      <th>Returned Orders (<%= Order.where(status: 1).count %>)</th>
     </tr>
       <% @orders.each do |order| %>
         <% if order.returned? %>
@@ -13,9 +20,9 @@
         <% end %>
       <% end %>
   </table>
-  <table class="bordered order_info rented_cats">
+  <table id="rented_cats" class="bordered order_info">
     <tr>
-      <th>Rented Orders (<%= Order.where(status: 1).count %>)</th>
+      <th>Rented Orders (<%= Order.where(status: 0).count %>)</th>
     </tr>
       <% @orders.each do |order| %>
         <% if order.rented? %>
@@ -27,7 +34,7 @@
         <% end %>
       <% end %>
   </table>
-  <table class="bordered order_info cancelled_cats">
+  <table class="bordered order_info" id="cancelled_cats">
     <tr>
       <th>Cancelled Orders (<%= Order.where(status: 2).count %>)</th>
     </tr>

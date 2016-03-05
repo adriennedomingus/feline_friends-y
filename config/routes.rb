@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :create]
 
   namespace "admin" do
-    get "/dashboard", to: "users#show"
+    get "/dashboard", to: "orders#index"
+    resources :orders, only: [:show, :update]
     resources :cats, only: [:new, :create]
   end
 

@@ -34,13 +34,6 @@ module SpecHelpers
     }
   end
 
-  def create_admin
-    User.create(username: "adrienne",
-                password: "password",
-                name: "Adrienne",
-                role: 1)
-  end
-
   def create_users
     {
       user1: User.create(username: "adrienne",
@@ -48,8 +41,22 @@ module SpecHelpers
                          name: "Adrienne"),
       user2: User.create(username: "chelsea",
                          password: "password",
-                         name: "Chelsea")
+                         name: "Chelsea"),
+      user3: User.create(username: "allan",
+                         password: "stinky",
+                         name: "Allan")
     }
+  end
+
+  def create_user_orders
+    user1  = create_users[:user1]
+    user2  = create_users[:user2]
+    user3  = create_users[:user3]
+    order1 = user1.orders.create(status: 0)
+    order2 = user1.orders.create(status: 1)
+    order3 = user2.orders.create(status: 2)
+    order4 = user3.orders.create(status: 2)
+    [order1, order2, order3, order4]
   end
 
   def log_in_user(user)
@@ -57,6 +64,13 @@ module SpecHelpers
     fill_in "Password", with: "password"
 
     click_on "Login Meow!"
+  end
+
+  def create_admin
+    User.create(username: "adrienne",
+                password: "password",
+                name: "Adrienne",
+                role: 1)
   end
 
   def create_cat

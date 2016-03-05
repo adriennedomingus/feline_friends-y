@@ -1,0 +1,9 @@
+<% if !current_user.orders.empty? %>
+<div class="collection">
+  <% current_user.orders.each do |order| %>
+    <%= link_to "Order id: #{order.id}", order_path(order.id), class: "collection-item" %>
+  <% end %>
+</div>
+<% else %>
+  <p>No order history</p>
+<% end %>

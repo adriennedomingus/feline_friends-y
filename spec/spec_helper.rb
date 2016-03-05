@@ -2,8 +2,22 @@ module SpecHelpers
   def create_integration
     user = create_users[:user1]
     order = create_orders[:order1]
-    cat = create_cats[:cat1]
-    cat2 = create_cats[:cat2]
+    cat = Cat.create(
+      name: "Chica",
+      age: 2,
+      description: "Actually a dog",
+      image: image_path,
+      price: 2000,
+      category_id: categories[0].id,
+      status: "inactive")
+    cat2 = Cat.create(
+      name: "Caia",
+      age: 8,
+      description: "Chelsea's other cat",
+      image: image_path,
+      price: 3000,
+      category_id: categories[0].id,
+      status: "active")
     CatOrder.create(order_id: order.id, cat_id: cat.id)
     CatOrder.create(order_id: order.id, cat_id: cat2.id)
     user.orders << order
@@ -77,7 +91,7 @@ module SpecHelpers
   def create_cats
     {
       cat1: Cat.create(
-        name: "Fido",
+        name: "Chica",
         age: 2,
         description: "Actually a dog",
         image: image_path,

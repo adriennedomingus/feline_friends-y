@@ -1,4 +1,4 @@
-<a class='dropdown-button btn' id="crusted_mud" data-activates='dropdown1'>Categories</a>
+<a class='dropdown-button btn' id="release" data-activates='dropdown1'>Categories</a>
 <ul id='dropdown1' class='dropdown-content'>
   <% @categories.each do |category| %>
     <li><%= link_to category.name, category_path(category.name) %></li>

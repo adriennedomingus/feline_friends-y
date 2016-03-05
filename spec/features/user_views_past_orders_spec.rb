@@ -14,7 +14,7 @@ RSpec.feature "user views all past orders" do
 
     visit "/orders"
 
-    within("order_table") do
+    within(".order_table") do
       expect(page).to have_content(order_1.id)
       expect(page).to have_content(order_2.id)
       expect(page).to_not have_content(order_3.id)
@@ -35,7 +35,7 @@ RSpec.feature "user views all past orders" do
 
     visit "/orders"
 
-    within("order_table") do
+    within(".order_table") do
       expect(page).to have_content("No order history")
     end
   end

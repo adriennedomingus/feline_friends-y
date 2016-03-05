@@ -12,4 +12,8 @@ class Admin::OrdersController < Admin::BaseController
     end
     redirect_to admin_dashboard_path
   end
+
+  def show
+    @order = Order.find(params[:id])
+  end
 end

@@ -34,17 +34,29 @@ module SpecHelpers
     }
   end
 
+  def create_address
+    Address.find_or_create_by(state: "CA",
+                              city: "San Francisco",
+                              street: "4325 W. Palm Beach Rd.",
+                              zip: "94116",
+                              country: "United States")
+  end
+
   def create_users
+    address = create_address
     {
       user1: User.create(username: "adrienne",
                          password: "password",
-                         name: "Adrienne"),
+                         name: "Adrienne",
+                         address_id: address.id),
       user2: User.create(username: "chelsea",
                          password: "password",
-                         name: "Chelsea"),
+                         name: "Chelsea",
+                         address_id: address.id),
       user3: User.create(username: "allan",
                          password: "stinky",
-                         name: "Allan")
+                         name: "Allan",
+                         address_id: address.id)
     }
   end
 
@@ -69,8 +81,9 @@ module SpecHelpers
   def create_admin
     User.create(username: "adrienne",
                 password: "password",
-                name: "Adrienne",
-                role: 1)
+                name: "bacon",
+                role: 1,
+                address_id: create_address.id)
   end
 
   def create_cat

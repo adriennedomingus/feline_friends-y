@@ -11,16 +11,14 @@ class OrdersController < ApplicationController
       order.create_order(@cart)
       order.assign_attributes(start_date: Date.new(year, month, day))
       order.assign_attributes(end_date: order.start_date + 7.days)
-      order.cats.each do |cat|
-        if cat.orders.reserved?
-          flash[:notice] = "Sorry #{cat.name} is already reserved on that date."
-          redirect_to cart_path
-        else
-          order.save
-          session[:cart] = {}
-          flash[:alert] = "Order was successfully placed"
-          redirect_to "/orders"
-        end
+      if order.cats.any? { |cat| cat.orders.reserved? }
+        flash[:notice] = "Sorry one of the cats in your order is already reserved on that date."
+        redirect_to cart_path
+      else
+        order.save
+        session[:cart] = {}
+        flash[:alert] = "Order was successfully placed"
+        redirect_to "/orders"
       end
     else
       flash[:notice] = "Your cart is empty"

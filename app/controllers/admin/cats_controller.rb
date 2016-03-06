@@ -14,6 +14,28 @@ class Admin::CatsController < Admin::BaseController
     end
   end
 
+  def edit
+    @cat = Cat.find(params[:id])
+  end
+
+  def update
+    @cat = Cat.find(params[:id])
+    if @cat.update(cat_params)
+      flash[:alert] = "You have edited #{@cat.name}!"
+      redirect_to cats_path
+    else
+      flash.now[:notice] = "Please enter all information"
+      render :edit
+    end
+  end
+
+  def destroy
+    @cat = Cat.find(params[:id])
+    @cat.destroy
+    flash[:alert] = "You have deleted #{@cat.name}!"
+    redirect_to cats_path
+  end
+
   private
 
   def cat_params

@@ -7,7 +7,7 @@
             <%= image_tag cat.image, class: "cat_image" %>
           </div>
           <div class="col m6">
-            <p class="each_cat_p">Name: <%= cat.name %></p>
+            <p class="each_cat_p">Name: <%= link_to cat.name, cat_path(cat) %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %></p>
             <% if !current_page?('/cart')  %>

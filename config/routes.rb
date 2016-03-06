@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace "admin" do
     get "/dashboard", to: "orders#index"
     resources :orders, only: [:show, :update]
-    resources :cats, only: [:new, :create]
+    resources :cats, only: [:new, :create, :edit, :update, :destroy]
   end
 
   get "/cart", to: "carts#show"

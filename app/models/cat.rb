@@ -3,7 +3,7 @@ class Cat < ActiveRecord::Base
 
   belongs_to :category
   has_many :cat_orders
-  has_many :orders, through: :cat_orders
+  has_many :orders, through: :cat_orders, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
   validates_numericality_of :price, greater_than: 0

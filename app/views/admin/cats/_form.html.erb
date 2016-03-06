@@ -1,0 +1,14 @@
+<%= form_for([:admin, @cat]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :age %>
+  <%= f.text_field :age %>
+  <%= f.label :image %>
+  <%= f.text_field :image %>
+  <%= select("cat", :category_id, Category.all.collect { |c| [c.name, c.id]}, {prompt: "Select Category"} )%>
+  <%= f.submit class: "button btn"%>
+<% end %>

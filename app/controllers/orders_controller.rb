@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
 
   def create
     order = current_user.orders.create
+    order.update(start_date: Date.new(params[:order]["start_date(1i)"].to_i, params[:order]["start_date(2i)"].to_i, params[:order]["start_date(3i)"].to_i))
+    order.update(end_date: order.start_date + 7.days)
     if !@cart.contents.empty?
       order.create_order(@cart)
       session[:cart] = {}

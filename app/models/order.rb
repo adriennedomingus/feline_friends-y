@@ -14,6 +14,10 @@ class Order < ActiveRecord::Base
     time.strftime("%b %d, %Y at %l:%M %p UTC")
   end
 
+  def format_date(date)
+    date.strftime("%b %d, %Y")
+  end
+
   def create_order(cart)
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)

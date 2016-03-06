@@ -1,12 +1,16 @@
 <div class="row">
-    <div class="col m6">
+    <div class="col m9">
       <h1>Your Cart</h1>
     </div>
     <div class="col m3 cart_total">
       Total Price: <%= @cart.total_price %>
     </div>
-    <div class="col m2 checkout-button">
-      <%= button_to "Checkout", orders_path, class: "button btn" %>
+    <div class="col m12">
+      <h5>When would you like your reservation to start?</h5>
     </div>
+    <%= form_for @order do |f| %>
+      <%= f.date_select :start_date, start_year: Date.today.year, id: "start"%>
+      <%= f.submit "Checkout", class: "button btn" %>
+    <% end %>
 </div>
 <%= render "partials/each_cat" %>

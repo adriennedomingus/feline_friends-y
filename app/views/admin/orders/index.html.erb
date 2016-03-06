@@ -7,8 +7,6 @@
     <li><%= link_to "Cancelled", "#cancelled_cats" %></li>
     <li><%= link_to "Overdue", "#overdue_cats" %></li>
 </ul>
-
-
   <table id="returned_cats" class="bordered order_info">
     <tr>
       <th>Returned Orders (<%= Order.where(status: 1).count %>)</th>

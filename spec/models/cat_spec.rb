@@ -28,4 +28,12 @@ RSpec.describe Cat, type: :model do
       expect(Cat.random_cat.class).to eq(Cat)
     end
   end
+  context "it changes status to inactive" do
+    it "changes status from active to inactive" do
+      cat = create_cat
+      expect(cat.status).to eq("active")
+      cat.change_cat_status(cat)
+      expect(cat.status).to eq("inactive")
+    end
+  end
 end

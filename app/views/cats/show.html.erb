@@ -9,7 +9,7 @@
             <p>Name: <%= @cat.name %></p>
             <p>Age: <%= @cat.age %></p>
             <p>Price: <%= @cat.format_price %></p>
-            <% if @cat.status != "inactive" %>
+            <% if @cat.status == "active" %>
               <p><%= button_to "Add to Cart", carts_path(cat_id: @cat.id), class: "button btn" %></p>
             <% end %>
           </div>
@@ -26,6 +26,6 @@
     <p><%= link_to "Edit #{@cat.name}", edit_admin_cat_path(@cat), class: "button btn" %></p>
   </div>
   <div>
-    <p><%= link_to "Delete #{@cat.name}", admin_cat_path(@cat),  method: "delete", class: "button btn" %></p>
+    <p><%= button_to "Change Status to Inactive", admin_path(@cat), method: "patch", class: "button btn" %></p>
   </div>
 <% end %>

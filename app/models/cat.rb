@@ -3,7 +3,7 @@ class Cat < ActiveRecord::Base
 
   belongs_to :category
   has_many :cat_orders
-  has_many :orders, through: :cat_orders, dependent: :destroy
+  has_many :orders, through: :cat_orders
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
   validates_numericality_of :price, greater_than: 0
@@ -18,5 +18,9 @@ class Cat < ActiveRecord::Base
 
   def self.random_cat
     all.sample
+  end
+
+  def change_cat_status(cat)
+    cat.update_attribute(:status, "inactive")
   end
 end

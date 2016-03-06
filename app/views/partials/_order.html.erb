@@ -1,4 +1,7 @@
 <h1>Order id: <%= @order.id %></h1>
+<% if @order.overdue? %>
+  <p class="overdue">OVERDUE</p>
+<% end %>
 <div class="order_table">
   <table class="bordered order_info">
     <tbody>
@@ -22,6 +25,12 @@
         <th>Order placed at:</th>
         <td><%= @order.format_time(@order.created_at) %></td>
       </tr>
+      <% if @order.start_date %>
+        <tr class="rental_period">
+          <th>Rental period:</th>
+          <td><%= "#{@order.format_date(@order.start_date)} - #{@order.format_date(@order.end_date)}" %></td>
+        </tr>
+      <% end %>
       <% if @order.cancelled_at %>
       <tr>
         <th>Cancelled on:</th>

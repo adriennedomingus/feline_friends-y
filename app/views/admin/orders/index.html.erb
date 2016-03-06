@@ -10,9 +10,8 @@
     <li><%= link_to "Rented", "#rented_cats" %></li>
     <li><%= link_to "Returned", "#returned_cats" %></li>
     <li><%= link_to "Cancelled", "#cancelled_cats" %></li>
+    <li><%= link_to "Overdue", "#overdue_cats" %></li>
 </ul>
-
-
   <table id="returned_cats" class="bordered order_info">
     <tr>
       <th>Returned Orders (<%= Order.where(status: 1).count %>)</th>
@@ -35,6 +34,9 @@
           <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
           <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>
           <td><%= render partial: "partials/order_update", locals: {status: "Cancel", order: order} %></td>
+          <% if order.overdue? %>
+            <td class="overdue">Overdue</td>
+          <% end %>
         </tr>
         <% end %>
       <% end %>
@@ -50,4 +52,19 @@
         </tr>
       <% end %>
     <% end %>
+  </table>
+  <table id="overdue_cats" class="bordered order_info">
+    <tr>
+      <th>Overdue Orders</th>
+    </tr>
+      <% @orders.each do |order| %>
+        <% if order.overdue? %>
+        <tr>
+          <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
+          <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>
+          <td><%= render partial: "partials/order_update", locals: {status: "Cancel", order: order} %></td>
+          <td>Due: <%= order.format_date(order.end_date) %></td>
+        </tr>
+        <% end %>
+      <% end %>
   </table>

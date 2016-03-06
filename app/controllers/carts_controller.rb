@@ -13,6 +13,7 @@ class CartsController < ApplicationController
 
   def show
     @cats = @cart.add_contents_to_cart(@cart.contents)
+    @order = Order.new
   end
 
   def destroy

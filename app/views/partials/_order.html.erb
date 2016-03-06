@@ -1,4 +1,7 @@
 <h1>Order id: <%= @order.id %></h1>
+<% if @order.overdue? %>
+  <p class="overdue">OVERDUE</p>
+<% end %>
 <div class="order_table">
   <table class="bordered order_info">
     <tbody>

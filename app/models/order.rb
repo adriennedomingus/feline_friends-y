@@ -29,4 +29,10 @@ class Order < ActiveRecord::Base
       start_date.to_datetime..end_date.to_datetime
     end
   end
+
+  def overdue?
+    if end_date
+      status == "rented" && Date.today > end_date.to_datetime
+    end
+  end
 end

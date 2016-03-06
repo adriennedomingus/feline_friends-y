@@ -28,7 +28,7 @@ RSpec.feature "user creates a reservation" do
   end
 
   scenario "user cannot make a reservation at same time cat is reserved" do
-    cat = create_cat
+    create_cat
     user = create_users[:user1]
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(user)
@@ -55,7 +55,7 @@ RSpec.feature "user creates a reservation" do
 
     click_on "Checkout"
 
-    expect(page).
-      to have_content("Sorry #{cat.name} is already reserved on that date.")
+    expect(page).to have_content
+      ("One of the cats in your order is already reserved on that date.")
   end
 end

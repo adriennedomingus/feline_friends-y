@@ -40,7 +40,7 @@ RSpec.feature "admin deletes an item" do
   scenario "admin can delete a cat in an order" do
     admin = create_admin
 
-    _, _, cat, _ = create_integration
+    _, _, cat = create_integration
 
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(admin)

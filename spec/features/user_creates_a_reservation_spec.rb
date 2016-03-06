@@ -56,6 +56,6 @@ RSpec.feature "user creates a reservation" do
     click_on "Checkout"
 
     expect(page).to have_content
-      ("One of the cats in your order is already reserved on that date.")
+      "One of the cats in your order is already reserved on that date."
   end
 end

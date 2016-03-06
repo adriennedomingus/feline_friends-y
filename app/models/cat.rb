@@ -19,4 +19,8 @@ class Cat < ActiveRecord::Base
   def self.random_cat
     all.sample
   end
+
+  def change_cat_status(cat)
+    cat.update_attribute(:status, "inactive")
+  end
 end

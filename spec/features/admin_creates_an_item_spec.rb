@@ -9,7 +9,10 @@ RSpec.feature "admin creates an item" do
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(admin)
 
-    visit new_admin_cat_path
+    visit admin_dashboard_path
+
+    click_on "Enter a new cat!"
+
     fill_in "Name", with: "Mena"
     fill_in "Price", with: "4500"
     fill_in "Description", with: "Describing a cat"
@@ -17,7 +20,10 @@ RSpec.feature "admin creates an item" do
     fill_in "Image", with: "http://41.media.tumblr.com/3f823cc08d835fb399eaa315d268b2b0/tumblr_ni7labrSS91qji3sdo1_500.jpg"
     select "Fluffy", from: "cat[category_id]"
     click_on "Create Cat"
-    expect(page).to have_content("You have added Mena to the site!")
+
+    within(".flash") do
+      expect(page).to have_content("You have added Mena to the site!")
+    end
   end
 
   scenario "there is a default image when none is added" do
@@ -36,7 +42,9 @@ RSpec.feature "admin creates an item" do
     select "Fluffy", from: "cat[category_id]"
     click_on "Create Cat"
 
-    expect(page).to have_content("You have added Mena to the site!")
+    within(".flash") do
+      expect(page).to have_content("You have added Mena to the site!")
+    end
   end
 
   scenario "invalid params" do
@@ -54,6 +62,8 @@ RSpec.feature "admin creates an item" do
     select "Fluffy", from: "cat[category_id]"
     click_on "Create Cat"
 
-    expect(page).to have_content("Please enter all information")
+    within(".flash") do
+      expect(page).to have_content("Please enter all information")
+    end
   end
 end

@@ -94,7 +94,7 @@ module SpecHelpers
       image: image_path,
       price: 2000,
       category_id: categories[0].id,
-      status: "inactive")
+      status: "active")
   end
 
   def image_path

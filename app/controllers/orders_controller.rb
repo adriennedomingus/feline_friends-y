@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.create
     if !@cart.contents.empty?
+      order = current_user.orders.create
       order.create_order(@cart)
       session[:cart] = {}
       flash[:alert] = "Order was successfully placed"

@@ -19,4 +19,8 @@ class Cat < ActiveRecord::Base
   def self.random_cat
     all.sample
   end
+
+  def rented?
+    orders.where(status: 0).count > 0
+  end
 end

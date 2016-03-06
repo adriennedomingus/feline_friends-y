@@ -35,4 +35,8 @@ class Order < ActiveRecord::Base
       status == "rented" && Date.today > end_date.to_datetime
     end
   end
+
+  def self.reserved?
+    self.any? { |order| order.range === order.start_date }
+  end
 end

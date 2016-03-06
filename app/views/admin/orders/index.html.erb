@@ -17,11 +17,9 @@
       <th>Returned Orders (<%= Order.where(status: 1).count %>)</th>
     </tr>
       <% @orders.each do |order| %>
-        <% if order.returned? %>
-          <tr>
-            <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
-          </tr>
-        <% end %>
+        <tr>
+          <td><%= link_to "Order id: #{order.id}", admin_order_path(order) if order.returned? %></td>
+        </tr>
       <% end %>
   </table>
   <table id="rented_cats" class="bordered order_info">
@@ -46,11 +44,9 @@
       <th>Cancelled Orders (<%= Order.where(status: 2).count %>)</th>
     </tr>
     <% @orders.each do |order| %>
-      <% if order.cancelled? %>
-        <tr>
-          <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= link_to "Order id: #{order.id}", admin_order_path(order) if order.cancelled? %></td>
+      </tr>
     <% end %>
   </table>
   <table id="overdue_cats" class="bordered order_info">

@@ -37,6 +37,6 @@ class Order < ActiveRecord::Base
   end
 
   def self.reserved?
-    self.any? { |order| order.range === order.start_date }
+    any? { |order| order.range === order.start_date }
   end
 end

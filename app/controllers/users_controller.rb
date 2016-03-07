@@ -15,10 +15,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def show
-  end
-
+  
   def edit
     unless current_user == User.find_by(id: params[:id])
       render file: "/public/404"

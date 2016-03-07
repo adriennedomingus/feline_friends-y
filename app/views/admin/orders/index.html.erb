@@ -14,7 +14,7 @@
 </ul>
   <table id="returned_cats" class="bordered order_info">
     <tr>
-      <th>Returned Orders (<%= Order.where(status: 1).count %>)</th>
+      <th>Returned Orders (<%= Order.status_count(1) %>)</th>
     </tr>
       <% @orders.each do |order| %>
         <tr>
@@ -24,7 +24,7 @@
   </table>
   <table id="rented_cats" class="bordered order_info">
     <tr>
-      <th>Rented Orders (<%= Order.where(status: 0).count %>)</th>
+      <th>Rented Orders (<%= Order.status_count(0) %>)</th>
     </tr>
       <% @orders.each do |order| %>
         <% if order.rented? %>
@@ -41,7 +41,7 @@
   </table>
   <table class="bordered order_info" id="cancelled_cats">
     <tr>
-      <th>Cancelled Orders (<%= Order.where(status: 2).count %>)</th>
+      <th>Cancelled Orders (<%= Order.status_count(2) %>)</th>
     </tr>
     <% @orders.each do |order| %>
       <tr>

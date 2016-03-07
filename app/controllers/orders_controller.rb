@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       else
         order.save
         session[:cart] = {}
-        flash[:alert] = "Order was successfully placed"
+        flash[:alert]  = "Order was successfully placed"
         redirect_to "/orders"
       end
     else
@@ -30,9 +30,9 @@ class OrdersController < ApplicationController
   private
 
   def date_params
-    year = params[:order]["start_date(1i)"].to_i
+    year  = params[:order]["start_date(1i)"].to_i
     month = params[:order]["start_date(2i)"].to_i
-    day = params[:order]["start_date(3i)"].to_i
+    day   = params[:order]["start_date(3i)"].to_i
     [year, month, day]
   end
 end

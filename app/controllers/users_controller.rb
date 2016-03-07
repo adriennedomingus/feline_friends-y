@@ -16,13 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
     unless current_user == User.find_by(id: params[:id])
       render file: "/public/404"
     end
+    @user = current_user
   end
 
   def update

@@ -18,10 +18,13 @@ class Order < ActiveRecord::Base
     date.strftime("%b %d, %Y")
   end
 
-  def create_order(cart)
+  def create_order(cart, date_params)
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
+    year, month, day = date_params
+    assign_attributes(start_date: Date.new(year, month, day))
+    assign_attributes(end_date: start_date + 7.days)
   end
 
   def range
@@ -38,5 +41,9 @@ class Order < ActiveRecord::Base
 
   def self.reserved?
     any? { |order| order.range === order.start_date }
+  end
+
+  def self.status_count(status)
+    where(status: status).count
   end
 end

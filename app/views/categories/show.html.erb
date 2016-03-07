@@ -1,4 +1,4 @@
 <h1><%= @category.name %> cats</h1>
 <%= render "partials/category_drop" %>
-<%= render "partials/each_cat" %>
+<%= render partial: "partials/each_cat", locals: {cats: @category.cats} %>
 <div class="spacer"></div>

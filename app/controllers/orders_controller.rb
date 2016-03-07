@@ -6,11 +6,8 @@ class OrdersController < ApplicationController
 
   def create
     if !@cart.contents.empty?
-      year, month, day = date_params
       order = current_user.orders.new
-      order.create_order(@cart)
-      order.assign_attributes(start_date: Date.new(year, month, day))
-      order.assign_attributes(end_date: order.start_date + 7.days)
+      order.create_order(@cart, date_params)
       if order.cats.any? { |cat| cat.orders.reserved? }
         flash[:notice] =
           "One of the cats in your order is already reserved on that date."
@@ -18,7 +15,7 @@ class OrdersController < ApplicationController
       else
         order.save
         session[:cart] = {}
-        flash[:alert] = "Order was successfully placed"
+        flash[:alert]  = "Order was successfully placed"
         redirect_to "/orders"
       end
     else
@@ -30,9 +27,8 @@ class OrdersController < ApplicationController
   private
 
   def date_params
-    year = params[:order]["start_date(1i)"].to_i
-    month = params[:order]["start_date(2i)"].to_i
-    day = params[:order]["start_date(3i)"].to_i
-    [year, month, day]
+    params.require(:order).
+      permit("start_date(1i)", "start_date(2i)", "start_date(3i)").
+      values.map(&:to_i)
   end
 end

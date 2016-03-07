@@ -5,7 +5,7 @@
   <%= f.password_field :password %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= f.fields_for(Address.new) do |a| %>
+  <%= f.fields_for(@user.address || Address.new ) do |a| %>
     <%= a.label :country %>
     <%= a.text_field :country %>
     <%= a.label :state %>

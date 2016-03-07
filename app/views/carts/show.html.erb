@@ -13,4 +13,4 @@
       <%= f.submit "Checkout", class: "button btn" %>
     <% end %>
 </div>
-<%= render "partials/each_cat" %>
+<%= render partial: "partials/each_cat", locals: {cats: @cats} %>

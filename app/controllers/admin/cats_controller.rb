@@ -1,6 +1,5 @@
 class Admin::CatsController < Admin::BaseController
   before_action :find_cat, only: [:edit, :update, :change_status]
-  
   def new
     @cat = Cat.new
   end

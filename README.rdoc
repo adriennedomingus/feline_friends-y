@@ -1,28 +1,26 @@
-== README
+README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* **Project Overview**
+  Feline Friends-y is an e-commerce site designed as the final project for Module 2 at the Turing School of Software and Design. The [Project Spec](https://github.com/turingschool/curriculum/blob/master/source/projects/little_shop.markdown) can be found here.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  It is deployed on Heroku, and can be found in production [here](https://felinefriendsy.herokuapp.com)
+* **Team**
+  * [Adrienne Domingus](github.com/adriennedomingus)
+  * [Allan Blair](github.com/amaxwellblair)
+  * [Chelsea Johnson](github.com/cheljoh)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* **Ruby Version:** 2.2.3
+
+* **Database creation**
+
+* This was built using a Postgres database.
+
+  ```
+  rake db:create db:migrate db:seed
+  ```
+
+* Test suite
+```
+rspec
+```

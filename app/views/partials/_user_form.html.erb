@@ -1,0 +1,21 @@
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.fields_for(Address.new) do |a| %>
+    <%= a.label :country %>
+    <%= a.text_field :country %>
+    <%= a.label :state %>
+    <%= a.text_field :state %>
+    <%= a.label :city %>
+    <%= a.text_field :city %>
+    <%= a.label :street %>
+    <%= a.text_field :street %>
+    <%= a.label :zip %>
+    <%= a.text_field :zip %>
+  <% end %>
+  <%= f.submit class: "button btn" %>
+<% end %>

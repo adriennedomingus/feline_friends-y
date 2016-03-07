@@ -17,7 +17,7 @@ RSpec.feature "Admin can not modify users" do
     fill_in "Password", with: "password1"
     fill_in "Name", with: "Abigail"
 
-    click_on "Edit"
+    click_on "Update User"
 
     expect(page).to have_content "Name: Abigail"
 

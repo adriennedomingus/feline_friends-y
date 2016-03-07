@@ -23,7 +23,7 @@ RSpec.feature "unauthenticated user security" do
     fill_in "Username", with: "adrienne"
     fill_in "Password", with: "password"
     fill_in "Name", with: "Adrienne"
-    click_on "Sign Up"
+    click_on "Create User"
 
     visit admin_dashboard_path
 

@@ -23,7 +23,7 @@ RSpec.feature "visitor creates account" do
       fill_in "City", with: "Denver"
       fill_in "Street", with: "1510 Blake street"
       fill_in "Zip", with: "80202"
-      click_on "Sign Up"
+      click_on "Create User"
 
       User.find_by(username: "adrienne")
 
@@ -53,7 +53,7 @@ RSpec.feature "visitor creates account" do
       fill_in "Username", with: "adrienne"
       fill_in "Name", with: "Adrienne"
 
-      click_on "Sign Up"
+      click_on "Create User"
 
       expect(current_path).to eq(users_path)
 

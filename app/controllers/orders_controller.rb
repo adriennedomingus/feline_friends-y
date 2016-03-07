@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     if !@cart.contents.empty?
       order = current_user.orders.new
       order.create_order(@cart, date_params)
-      if order.cats.any? { |cat| cat.orders.reserved? }
+      if order.cats.any? { |cat| cat.orders.reserved?(order) }
         flash[:notice] =
           "One of the cats in your order is already reserved on that date."
         redirect_to cart_path

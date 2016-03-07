@@ -39,8 +39,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.reserved?
-    any? { |order| order.range === order.start_date }
+  def self.reserved?(order)
+    any? { |the_order| the_order.range === order.start_date }
   end
 
   def self.status_count(status)

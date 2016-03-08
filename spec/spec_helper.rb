@@ -1,7 +1,7 @@
 module SpecHelpers
   def create_integration
     user = create_users[:user1]
-    order = create_orders[:order1]
+    order = create_orders[:order2]
     cat = Cat.create(
       name: "Chica",
       age: 2,
@@ -29,8 +29,12 @@ module SpecHelpers
     {
       order1: Order.create(status: 1,
                            cancelled_at: "2016-03-02 11:10:57 -0700"),
-      order2: Order.create(status: 0),
-      order3: Order.create(status: 0),
+      order2: Order.create(status: 0,
+                           start_date: Date.new(2016, 03, 03),
+                           end_date: Date.new(2016, 03, 04)),
+      order3: Order.create(status: 0,
+                           start_date: Date.new(2016, 03, 03),
+                           end_date: Date.new(2016, 03, 04)),
     }
   end
 

@@ -12,7 +12,6 @@ RSpec.feature "view past orders in order index" do
     visit admin_dashboard_path
 
     expect(page).to have_content(user.orders.first.id)
-
     click_on "Order id: #{order.id}"
 
     within(".order_info") do

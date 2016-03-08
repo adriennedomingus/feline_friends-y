@@ -4,14 +4,12 @@ class SessionsController < ApplicationController
     if @user.nil?
       redirect_to new_user_path
       flash[:notice] = "Please register"
+    elsif @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      redirect_to user_dashboard_path
     else
-      if @user.authenticate(params[:session][:password])
-        session[:user_id] = @user.id
-        redirect_to user_dashboard_path
-      else
-        flash.now[:notice] = "Please enter valid username and password"
-        render :new
-      end
+      flash.now[:notice] = "Please enter valid username and password"
+      render :new
     end
   end
 

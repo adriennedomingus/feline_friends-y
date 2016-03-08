@@ -27,12 +27,12 @@ class Cart
   end
 
   def cats
-    self.contents.map do |cat, _|
+    contents.map do |cat, _|
       Cat.find(cat.to_i)
     end
   end
 
   def contains_cats?
-    !self.contents.empty?
+    !contents.empty?
   end
 end

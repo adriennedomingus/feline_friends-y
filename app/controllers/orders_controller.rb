@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
 
   def create
     order = current_user.orders.new
-    message = OrderProcessor.process(order, @cart, start_date_params, end_date_params)
+    message = OrderProcessor.
+      process(order, @cart, start_date_params, end_date_params)
     if message
       flash[:notice] = message
       redirect_to cart_path

@@ -15,6 +15,7 @@ RSpec.feature "user rates a cat" do
     click_on "Create Review"
 
     expect(page).to have_content(5)
+    expect(page).to have_content(user.name)
     expect(page).
       to have_content("This kitteh exemplifies the wonderful feline race")
 

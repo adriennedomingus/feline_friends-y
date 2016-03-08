@@ -13,12 +13,12 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cats  = @cart.add_contents_to_cart(@cart.contents)
+    @cats  = @cart.cats
     @order = Order.new
   end
 
   def destroy
-    @cart.remove_cat(params[:cat_id])
+    @cart.remove_cat(@cat.id)
     flash[:alert] = "Successfully removed #{path(@cat)} from cart"
     redirect_to cart_path
   end

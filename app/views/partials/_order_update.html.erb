@@ -1,4 +1,4 @@
 <%= form_for([:admin, order], method: :patch) do |f| %>
   <input type="hidden" name="status" value="<%= status %>">
-  <%= f.submit status, class: "button btn" %>
+  <%= f.submit status_spelled, locals: {status: status }, class: "button btn" %>
 <% end %>

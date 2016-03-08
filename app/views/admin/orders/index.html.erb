@@ -1,6 +1,5 @@
 <h1>Admin Dashboard</h1>
 
-
 <div>
   <p><%= link_to "Enter a new cat!", new_admin_cat_path, class: "button btn" %></p>
 </div>
@@ -28,29 +27,22 @@
     <tr>
       <th>Rented Orders (<%= Order.status_count(0) %>)</th>
     </tr>
-      <% @orders.each do |order| %>
-        <% if order.rented? %>
+        <% @orders.rented.each do |order| %>
         <tr>
           <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
-          <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>
-          <td><%= render partial: "partials/order_update", locals: {status: "Cancel", order: order} %></td>
-          <% if order.overdue? %>
-            <td class="overdue">Overdue</td>
-          <% end %>
+          <td><%= render partial: "partials/order_update", locals: {status_spelled: "Return", status: 1, order: order} %></td>
+          <td><%= render partial: "partials/order_update", locals: {status_spelled: "Cancel", status: 2, order: order} %></td>
         </tr>
-        <% end %>
       <% end %>
   </table>
   <table class="bordered order_info" id="cancelled_cats">
     <tr>
       <th>Cancelled Orders (<%= Order.status_count(2) %>)</th>
     </tr>
-    <% @orders.each do |order| %>
-      <% if order.cancelled? %>
-        <tr>
-          <td><%= link_to "Order id: #{order.id}", admin_order_path(order)  %></td>
-        </tr>
-      <% end %>
+    <% @orders.cancelled.each do |order| %>
+      <tr>
+        <td><%= link_to "Order id: #{order.id}", admin_order_path(order)  %></td>
+      </tr>
     <% end %>
   </table>
   <table id="overdue_cats" class="bordered order_info">

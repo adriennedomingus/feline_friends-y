@@ -24,9 +24,9 @@
     <p><%= link_to "Edit #{@cat.name}", edit_admin_cat_path(@cat), class: "button btn" if current_admin? %></p>
   </div>
   <div>
-    <% if @cat.status == "active" %>
-      <p><%= button_to "Change Status to Inactive", admin_path(@cat), method: "patch", class: "button btn" if current_admin? %></p>
+    <% if @cat.active? && current_admin? %>
+      <p><%= button_to "Change Status to Inactive", admin_path(@cat), method: "patch", class: "button btn" %></p>
     <% else %>
-      <p><%= button_to "Change Status to Active", admin_path(@cat), method: "patch", class: "button btn" if current_admin? %></p>
+      <p><%= button_to "Change Status to Active", admin_path(@cat), method: "patch", class: "button btn" %></p>
     <% end %>
   </div>

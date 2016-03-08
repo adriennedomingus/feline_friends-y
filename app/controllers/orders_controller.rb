@@ -4,10 +4,20 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  # class OrderProcessor
+  #   def initialize(current_user, cart, date_params)
+  #     @current_user = current_user
+  #     @cart = cart
+  #     @date_params = date_params
+  #   end
+  #
+  # end
+
   def create
-    if !@cart.contents.empty?
+    if @cart.contains_cats?
       order = current_user.orders.new
       order.create_order(@cart, date_params)
+      # process_order = OrderProcessor.new(current_user, @cart, date_params)
       if order.cats.any? { |cat| cat.orders.reserved? }
         flash[:notice] =
           "One of the cats in your order is already reserved on that date."

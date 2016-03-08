@@ -20,11 +20,15 @@ class Cat < ActiveRecord::Base
     all.sample
   end
 
-  def change_cat_status(cat)
-    if cat.status == "active"
-      cat.update_attribute(:status, "inactive")
+  def change_cat_status
+    if self.status == "active"
+      self.update_attribute(:status, "inactive")
     else
-      cat.update_attribute(:status, "active")
+      self.update_attribute(:status, "active")
     end
+  end
+
+  def active?
+    self.status == "active"
   end
 end

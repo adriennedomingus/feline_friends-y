@@ -26,7 +26,7 @@ class Admin::CatsController < Admin::BaseController
   end
 
   def change_status
-    @cat.change_cat_status(@cat)
+    @cat.change_cat_status
     flash[:alert] = "You have changed #{@cat.name}'s status to #{@cat.status}!"
     redirect_to cat_path(@cat)
   end

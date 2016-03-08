@@ -32,7 +32,7 @@ RSpec.describe Cat, type: :model do
     it "changes status from active to inactive" do
       cat = create_cat
       expect(cat.status).to eq("active")
-      cat.change_cat_status(cat)
+      cat.change_cat_status
       expect(cat.status).to eq("inactive")
     end
   end

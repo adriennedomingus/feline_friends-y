@@ -61,5 +61,22 @@ RSpec.feature "user can log in and out" do
         expect(page).to have_content("Please enter valid username and password")
       end
     end
+    scenario "user attempts to log in without registering" do
+      visit root_path
+      within(".hide-on-med-and-down") do
+        click_on "Login"
+      end
+
+      fill_in "Username", with: "adrienne"
+      fill_in "Password", with: "password"
+
+      click_on "Login Meow!"
+
+      expect(current_path).to eq(new_user_path)
+
+      within(".flash") do
+        expect(page).to have_content("Please register")
+      end
+    end
   end
 end

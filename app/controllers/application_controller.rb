@@ -21,4 +21,12 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def user_dashboard_path
+    if current_user.admin?
+      admin_dashboard_path
+    else
+      dashboard_path
+    end
+  end
 end

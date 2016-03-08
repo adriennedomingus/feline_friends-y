@@ -120,7 +120,6 @@ RSpec.feature "user creates a reservation" do
     click_on "Checkout"
 
     expect(current_path).to eq("/cart")
-    expect(page).to have_content
-      "You cannot make a reservation in the past"
+    expect(page).to have_content("You cannot make a reservation in the past")
   end
 end

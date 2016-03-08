@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col m9">
+    <div class="col m8">
       <h1>Your Cart</h1>
     </div>
-    <div class="col m3 cart_total">
-      Total Price: <%= @cart.total_price %>
+    <div class="col m4 cart_total">
+      Total Price: <%= @cart.total_price %> / day
     </div>
 
     <div class="spacer">
@@ -14,7 +14,7 @@
 
     <%= form_for @order do |f| %>
     <div class="row">
-      <div class="col m6">
+      <div class="col m6 start_date">
         <h5>Reservation Start Date</h5>
         <%= f.date_select :start_date, start_year: Date.today.year, id: "start"%>
       </div>

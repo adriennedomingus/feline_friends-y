@@ -8,10 +8,11 @@ class OrdersController < ApplicationController
     if !@cart.contents.empty?
       order = current_user.orders.new
       order.create_order(@cart, start_date_params, end_date_params)
-      # require "pry"
-      # binding.pry
       if order.end_date <= order.start_date
         flash[:notice] = "Your reservation must end at least one day after your start date"
+        redirect_to cart_path
+      elsif order.start_date < Date.today
+        flash[:notice] = "You cannot make a reservation in the past"
         redirect_to cart_path
       elsif order.cats.any? { |cat| cat.orders.reserved?(order) }
         flash[:notice] =

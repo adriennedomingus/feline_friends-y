@@ -5,19 +5,26 @@
     <div class="col m3 cart_total">
       Total Price: <%= @cart.total_price %>
     </div>
-    <div class="col m12">
-      <h5>When would you like your reservation to start?</h5>
+
+    <div class="spacer">
     </div>
     <div class="spacer">
 
     </div>
-    <div class="spacer">
 
+    <%= form_for @order do |f| %>
+    <div class="row">
+      <div class="col m6">
+        <h5>Reservation Start Date</h5>
+        <%= f.date_select :start_date, start_year: Date.today.year, id: "start"%>
+      </div>
+      <div class="col m6">
+        <h5>Reservation End Date</h5>
+        <%= f.date_select :end_date, start_year: Date.today.year, id: "end" %>
+      </div>
     </div>
-      <%= form_for @order do |f| %>
-      <%= f.date_select :start_date, start_year: Date.today.year, id: "start"%>
-      <%= f.submit "Checkout", class: "button btn" %>
-      <% end %>
+    <%= f.submit "Checkout", class: "button btn" %>
+    <% end %>
 
 </div>
 <%= render partial: "partials/each_cat", locals: {cats: @cats} %>

@@ -5,9 +5,9 @@ class Admin::OrdersController < Admin::BaseController
 
   def update
     if params[:status] == "Cancel"
-      Order.update(params[:id], status: 2)
+      Order.update(params[:id], status: 2, start_date: nil, end_date: nil)
     elsif params[:status] == "Return"
-      Order.update(params[:id], status: 1)
+      Order.update(params[:id], status: 1, end_date: Date.today)
     end
     redirect_to admin_dashboard_path
   end

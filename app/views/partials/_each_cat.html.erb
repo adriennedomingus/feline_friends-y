@@ -9,7 +9,7 @@
           <div class="col m6">
             <p class="each_cat_p">Name: <%= link_to cat.name, cat_path(cat) %></p>
             <p>Age: <%= cat.age %></p>
-            <p>Price: <%= cat.format_price %></p>
+            <p>Price: <%= cat.format_price %> / day</p>
             <% if !current_page?('/cart')  %>
               <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), class: "button btn" if cat.status == "active" %></p>
             <% else %>

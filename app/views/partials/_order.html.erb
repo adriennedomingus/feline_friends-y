@@ -60,7 +60,7 @@
     <% @order.cats.each do |cat| %>
       <tr>
         <td><%= link_to cat.name, cat_path(cat.id)%></td>
-        <td><%= cat.format_price %></td>
+        <td><%= cat.format_price %> / day</td>
       </tr>
     <% end %>
     </tbody>

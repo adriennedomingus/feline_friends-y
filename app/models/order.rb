@@ -7,7 +7,9 @@ class Order < ActiveRecord::Base
   enum status: %w(rented returned cancelled)
 
   def total
-    number_to_currency(cats.sum(:price) / 100.0)
+    if days
+      number_to_currency(cats.sum(:price) * days / 100)
+    end
   end
 
   def format_time(time)
@@ -18,18 +20,25 @@ class Order < ActiveRecord::Base
     date.strftime("%b %d, %Y")
   end
 
-  def create_order(cart, date_params)
+  def create_order(cart, start_date_params, end_date_params)
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
-    year, month, day = date_params
+    year, month, day = start_date_params
+    end_year, end_month, end_day = end_date_params
     assign_attributes(start_date: Date.new(year, month, day))
-    assign_attributes(end_date: start_date + 7.days)
+    assign_attributes(end_date: Date.new(end_year, end_month, end_day))
   end
 
   def range
     if start_date
       start_date.to_datetime..end_date.to_datetime
+    end
+  end
+
+  def days
+    if end_date && start_date
+      (end_date.to_datetime - start_date.to_datetime).to_i
     end
   end
 

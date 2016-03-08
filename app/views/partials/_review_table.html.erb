@@ -1,0 +1,15 @@
+<h4> Reviews for <%= @cat.name %>!</h4><br />
+
+<% counter = 1 %>
+<% @cat.reviews.each do |review| %>
+  <table class="bordered">
+    <tr>
+      <th>Review <%= counter %></th>
+    </tr>
+    <tr>
+      <td>Rating: <%=review.score%></td>
+      <td>Comment: <%=review.comment%></td>
+    </tr>
+  </table>
+  <% counter += 1 %>
+<% end %>

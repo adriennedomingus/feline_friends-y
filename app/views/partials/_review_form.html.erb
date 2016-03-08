@@ -1,0 +1,8 @@
+<h4>Leave Review for <%= @cat.name %>!</h4><br />
+
+<%= form_for([@cat, Review.new], url: cat_reviews_path(@cat)) do |f| %>
+  <%= select("review", "score", (1..5), {prompt: "Select Rating"}) %><br />
+  <%= f.label :comment %>
+  <%= f.text_field :comment %>
+  <%= f.submit class: "button btn" %>
+<% end %>

@@ -28,11 +28,13 @@
       <th>Rented Orders (<%= Order.status_count(0) %>)</th>
     </tr>
         <% @orders.rented.each do |order| %>
+          <% unless order.overdue? %>
         <tr>
           <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
-          <td><%= render partial: "partials/order_update", locals: {status_spelled: "Return", status: 1, order: order} %></td>
-          <td><%= render partial: "partials/order_update", locals: {status_spelled: "Cancel", status: 2, order: order} %></td>
+          <td><%= render partial: "partials/order_update", locals: { status_spelled: "Return", status: 1, order: order } %></td>
+          <td><%= render partial: "partials/order_update", locals: { status_spelled: "Cancel", status: 2, order: order } %></td>
         </tr>
+        <% end %>
       <% end %>
   </table>
   <table class="bordered order_info" id="cancelled_cats">
@@ -53,8 +55,8 @@
         <% if order.overdue? %>
         <tr>
           <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
-          <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>
-          <td><%= render partial: "partials/order_update", locals: {status: "Cancel", order: order} %></td>
+          <td><%= render partial: "partials/order_update", locals: { status_spelled: "Return", status: 1, order: order } %></td>
+          <td><%= render partial: "partials/order_update", locals: { status_spelled: "Cancel", status: 2, order: order } %></td>
           <td>Due: <%= order.format_date(order.end_date) %></td>
         </tr>
         <% end %>

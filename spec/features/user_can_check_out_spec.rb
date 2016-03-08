@@ -12,12 +12,29 @@ RSpec.feature "user checks out" do
     visit "/cart"
     expect(page).to have_content(cat.name)
 
+    select "2016", from: "order_start_date_1i"
+    select "November", from: "order_start_date_2i"
+    select "11", from: "order_start_date_3i"
+
+    select "2016", from: "order_end_date_1i"
+    select "November", from: "order_end_date_2i"
+    select "18", from: "order_end_date_3i"
+
     click_on "Checkout"
     expect(page).to have_content("Please log in")
 
     log_in_user(user)
 
     visit "/cart"
+
+    select "2016", from: "order_start_date_1i"
+    select "November", from: "order_start_date_2i"
+    select "11", from: "order_start_date_3i"
+
+    select "2016", from: "order_end_date_1i"
+    select "November", from: "order_end_date_2i"
+    select "18", from: "order_end_date_3i"
+
     click_on "Checkout"
 
     expect(current_path).to eq("/orders")
@@ -36,6 +53,15 @@ RSpec.feature "user checks out" do
     log_in_user(user)
 
     visit "/cart"
+
+    select "2016", from: "order_start_date_1i"
+    select "November", from: "order_start_date_2i"
+    select "11", from: "order_start_date_3i"
+
+    select "2016", from: "order_end_date_1i"
+    select "November", from: "order_end_date_2i"
+    select "18", from: "order_end_date_3i"
+
     click_on "Checkout"
 
     within(".flash") do

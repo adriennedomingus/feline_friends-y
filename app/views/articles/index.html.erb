@@ -1,0 +1,15 @@
+<h2>NPRrrrr - #1 Cat news source</h2>
+
+<% @articles.each do |article| %>
+<div class="row each_article">
+  <div class="col m12">
+    <div class="col m3">
+      <%= image_tag article.image, class: "article_image" %>
+      <p>Votes: <%= article.votes %></p>
+    </div>
+    <div class="col m9">
+      <p><%= link_to article.title, article.url %></p>
+    </div>
+  </div>
+</div>
+<% end %>

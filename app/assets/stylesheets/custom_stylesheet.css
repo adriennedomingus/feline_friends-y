@@ -7,11 +7,20 @@ body {
   width: 150px;
 }
 
+.article_image {
+  padding-top: 10px;
+}
+
 .each_cat {
   border: 1px solid grey;
   margin: 10px 0px 10px 0px;
   height: 250px;
   overflow: hidden;
+}
+
+.each_article {
+  border: 1px solid grey;
+  margin: 10px 0px 10px 0px;
 }
 
 .each_cat_p {

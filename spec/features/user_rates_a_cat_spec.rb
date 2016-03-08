@@ -6,7 +6,7 @@ RSpec.feature "user rates a cat" do
     cat = create_cat
 
     allow_any_instance_of(ApplicationController).
-        to receive(:current_user).and_return(user)
+      to receive(:current_user).and_return(user)
 
     visit cat_path(cat)
 
@@ -15,7 +15,8 @@ RSpec.feature "user rates a cat" do
     click_on "Create Review"
 
     expect(page).to have_content(5)
-    expect(page).to have_content("This kitteh exemplifies the wonderful feline race")
+    expect(page).
+      to have_content("This kitteh exemplifies the wonderful feline race")
 
     within(".flash") do
       expect(page).to have_content("You added a review of Fido!")
@@ -26,7 +27,7 @@ RSpec.feature "user rates a cat" do
     cat = create_cat
 
     allow_any_instance_of(ApplicationController).
-        to receive(:current_user).and_return(user)
+      to receive(:current_user).and_return(user)
 
     visit cat_path(cat)
 

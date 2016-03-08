@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def create
     @cat = Cat.find(params[:cat_id])
     @cat.reviews.new(review_params)

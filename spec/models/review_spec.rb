@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Review, type: :model do
   it { should validate_presence_of :comment }
@@ -11,6 +11,5 @@ RSpec.describe Review, type: :model do
     it "has a score between 1 and 5" do
       assert Review.create(score: 4, comment: "hello").valid?
     end
-
   end
 end

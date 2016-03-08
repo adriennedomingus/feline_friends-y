@@ -1,15 +1,20 @@
 <h4> Reviews for <%= @cat.name %>!</h4><br />
 
 <% counter = 1 %>
-<% @cat.reviews.each do |review| %>
   <table class="bordered">
     <tr>
-      <th>Review <%= counter %></th>
+      <th>Review</th>
+      <th>Username</th>
+      <th>Rating</th>
+      <th>Comment</th>
     </tr>
+  <% @cat.reviews.each do |review| %>
     <tr>
-      <td>Rating: <%=review.score%></td>
-      <td>Comment: <%=review.comment%></td>
+      <td><%= counter %></td>
+      <td><%=current_user.name%></td>
+      <td><%=review.score%></td>
+      <td><%=review.comment%></td>
     </tr>
-  </table>
   <% counter += 1 %>
 <% end %>
+  </table>

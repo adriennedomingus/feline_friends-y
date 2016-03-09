@@ -60,7 +60,8 @@ module SpecHelpers
       user3: User.create(username: "allan",
                          password: "stinky",
                          name: "Allan",
-                         address_id: address.id)
+                         address_id: address.id,
+                         role: 1)
     }
   end
 

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "user checks out" do
-  scenario "visitor attempts to checkout and is redirected to sign-in page" do
+  scenario "visitor tries to checkout is redirected to sign-in", js: true do
     cat = create_cat
     user = create_users[:user1]
 
@@ -12,13 +12,8 @@ RSpec.feature "user checks out" do
     visit "/cart"
     expect(page).to have_content(cat.name)
 
-    select "2016", from: "order_start_date_1i"
-    select "November", from: "order_start_date_2i"
-    select "11", from: "order_start_date_3i"
-
-    select "2016", from: "order_end_date_1i"
-    select "November", from: "order_end_date_2i"
-    select "18", from: "order_end_date_3i"
+    page.execute_script("$('#start').val('05 November, 2016')")
+    page.execute_script("$('#end').val('07 November, 2016')")
 
     click_on "Checkout"
     expect(page).to have_content("Please log in")
@@ -27,13 +22,8 @@ RSpec.feature "user checks out" do
 
     visit "/cart"
 
-    select "2016", from: "order_start_date_1i"
-    select "November", from: "order_start_date_2i"
-    select "11", from: "order_start_date_3i"
-
-    select "2016", from: "order_end_date_1i"
-    select "November", from: "order_end_date_2i"
-    select "18", from: "order_end_date_3i"
+    page.execute_script("$('#start').val('05 November, 2016')")
+    page.execute_script("$('#end').val('07 November, 2016')")
 
     click_on "Checkout"
 
@@ -45,7 +35,7 @@ RSpec.feature "user checks out" do
     end
   end
 
-  scenario "logged in user cannot check out unless they have item in cart" do
+  scenario "logged in user cannot check out unless with empty cart", js: true do
     user = create_users[:user1]
 
     visit login_path
@@ -54,13 +44,8 @@ RSpec.feature "user checks out" do
 
     visit "/cart"
 
-    select "2016", from: "order_start_date_1i"
-    select "November", from: "order_start_date_2i"
-    select "11", from: "order_start_date_3i"
-
-    select "2016", from: "order_end_date_1i"
-    select "November", from: "order_end_date_2i"
-    select "18", from: "order_end_date_3i"
+    page.execute_script("$('#start').val('05 November, 2016')")
+    page.execute_script("$('#end').val('07 November, 2016')")
 
     click_on "Checkout"
 

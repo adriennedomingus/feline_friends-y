@@ -22,14 +22,10 @@ class OrdersController < ApplicationController
   private
 
   def start_date_params
-    params.require(:order).
-      permit("start_date(1i)", "start_date(2i)", "start_date(3i)").
-      values.map(&:to_i)
+    params.require(:order).permit(:start_date)
   end
 
   def end_date_params
-    params.require(:order).
-      permit("end_date(1i)", "end_date(2i)", "end_date(3i)").
-      values.map(&:to_i)
+    params.require(:order).permit(:end_date)
   end
 end

@@ -2,8 +2,8 @@
     <div class="col m8">
       <h1>Your Cart</h1>
     </div>
-    <div class="col m4 cart_total">
-      Total Price: <%= @cart.total_price %> / day
+    <div class="col m3 cart_total">
+      Total Price: <span id ="cart_price"><%= @cart.total_price %></span>
     </div>
 
     <div class="spacer">
@@ -16,11 +16,11 @@
     <div class="row">
       <div class="col m6 start_date">
         <h5>Reservation Start Date</h5>
-        <%= f.date_select :start_date, start_year: Date.today.year, id: "start"%>
+        <%= f.text_field :start_date, id: "start", class: "datepicker"%>
       </div>
       <div class="col m6">
         <h5>Reservation End Date</h5>
-        <%= f.date_select :end_date, start_year: Date.today.year, id: "end" %>
+        <%= f.text_field :end_date, id: "end", class: "datepicker"%>
       </div>
     </div>
     <%= f.submit "Checkout", class: "button btn" %>

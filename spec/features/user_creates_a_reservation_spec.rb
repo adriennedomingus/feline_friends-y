@@ -97,4 +97,20 @@ RSpec.feature "user creates a reservation" do
     expect(current_path).to eq("/cart")
     expect(page).to have_content("You cannot make a reservation in the past")
   end
+
+  scenario "user doesn't fill in start/end dates for reservation", js: true do
+    create_cat
+    user = create_users[:user1]
+    allow_any_instance_of(ApplicationController).
+      to receive(:current_user).and_return(user)
+
+    visit cats_path
+
+    click_on "Add to Cart"
+
+    visit "/cart"
+
+    click_on "Checkout"
+    expect(page).to have_content("You must choose a start and end date for your reservation.")
+  end
 end

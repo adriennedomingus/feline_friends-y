@@ -14,11 +14,10 @@ RSpec.feature "User cart is empty after checkout", js: true do
 
     click_on "Add to Cart"
 
-    within(".hide-on-med-and-down") do
-      click_on "Cart: 1"
-    end
-    page.execute_script("$('#start').val('05 November, 2016')")
-    page.execute_script("$('#end').val('07 November, 2016')")
+    visit "/cart"
+
+    page.execute_script("$('#start').val('11 November, 2016')")
+    page.execute_script("$('#end').val('17 November, 2016')")
 
     click_on "Checkout"
 
@@ -26,6 +25,9 @@ RSpec.feature "User cart is empty after checkout", js: true do
       expect(page).to have_content "Cart: 0"
       click_on "Cart: 0"
     end
+    
+    page.execute_script("$('#start').val('11 November, 2016')")
+    page.execute_script("$('#end').val('17 November, 2016')")
 
     click_on "Checkout"
 

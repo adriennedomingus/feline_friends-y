@@ -24,8 +24,8 @@ class Order < ActiveRecord::Base
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
-    assign_attributes(start_date: create_date(start_date_params))
-    assign_attributes(end_date: create_date(end_date_params))
+    assign_attributes(start_date: create_date(start_date_params[:start_date]))
+    assign_attributes(end_date: create_date(end_date_params[:end_date]))
   end
 
   def create_date(date_params)

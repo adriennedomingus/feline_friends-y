@@ -23,10 +23,14 @@ class Order < ActiveRecord::Base
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
-    year, month, day = start_date_params
-    end_year, end_month, end_day = end_date_params
-    assign_attributes(start_date: Date.new(year, month, day))
-    assign_attributes(end_date: Date.new(end_year, end_month, end_day))
+    assign_attributes(start_date: create_date(start_date_params[:start_date]))
+    assign_attributes(end_date: create_date(end_date_params[:end_date]))
+  end
+
+  def create_date(date_params)
+    date = date_params.delete(",").split.reverse
+    date[1] = Date::MONTHNAMES.index(date[1])
+    Date.new(date[0].to_i, date[1], date[2].to_i)
   end
 
   def range #needs model test

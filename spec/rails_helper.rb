@@ -1,9 +1,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
-require 'rspec/rails'
-require 'capybara/rails'
+require "spec_helper"
+require "rspec/rails"
+require "capybara/rails"
+require "selenium-webdriver"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -22,8 +23,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.around(:each, js: true) do |example|
     DatabaseCleaner.strategy = :truncation
+    ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+    example.run
+    ActiveRecord::Base.shared_connection = nil
   end
 
   config.before(:each) do
@@ -41,5 +45,14 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     # Or, choose the following (which implies all of the above):
     with.library :rails
+  end
+end
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
   end
 end

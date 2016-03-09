@@ -23,9 +23,9 @@ class Cat < ActiveRecord::Base
 
   def change_cat_status
     if status == "active"
-      update_attribute(:status, "inactive")
+      update(status: "inactive")
     else
-      update_attribute(:status, "active")
+      update(status: "active")
     end
   end
 

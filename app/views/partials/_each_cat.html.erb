@@ -10,10 +10,10 @@
             <p class="each_cat_p">Name: <%= link_to cat.name, cat_path(cat) %></p>
             <p>Age: <%= cat.age %></p>
             <p>Price: <%= cat.format_price %> / day</p>
-            <% if !current_page?('/cart')  %>
-              <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), class: "button btn" if cat.status == "active" %></p>
-            <% else %>
+            <% if current_page?('/cart')  %>
               <p><%= button_to "Remove", cart_path(cat_id: cat.id), method: "delete", class: "button btn" %></p>
+            <% else %>
+              <p><%= button_to "Add to Cart", carts_path(cat_id: cat.id), class: "button btn" if cat.active? %></p>
             <% end %>
           </div>
           <div class="col m12">

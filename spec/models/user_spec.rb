@@ -13,4 +13,17 @@ RSpec.describe User, type: :model do
       expect(user.format_address).to eq(address)
     end
   end
+
+  context "tells if the user has orders" do
+    it "returns true if the user has orders" do
+      user = create_users[:user1]
+      user.orders.create
+      expect(user.has_orders?).to be_truthy
+    end
+    it "returns false if the user has no orders" do
+      user = create_users[:user1]
+      expect(user.has_orders?).to be_falsey
+    end
+
+  end
 end

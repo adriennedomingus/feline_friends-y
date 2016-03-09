@@ -9,7 +9,7 @@
     </tr>
   <% @cat.reviews.each_with_index do |review, index| %>
     <tr>
-      <td><%= index += 1 %></td>
+      <td><%= index + 1 %></td>
       <td><%= review.user.name %></td>
       <td><%=review.score%></td>
       <td><%=review.comment%></td>

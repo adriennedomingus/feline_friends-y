@@ -47,4 +47,16 @@ RSpec.describe Cat, type: :model do
       expect(cat.reviews?).to be_falsey
     end
   end
+  context "it tells if the cat is active" do
+    it "returns true if cat has active status" do
+      cat = create_cat
+      expect(cat.status).to eq("active")
+      expect(cat.active?).to be_truthy
+    end
+    it "returns true if cat has active status" do
+      cat = create_cat
+      cat.change_cat_status
+      expect(cat.active?).to be_falsey
+    end
+  end
 end

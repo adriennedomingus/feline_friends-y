@@ -9,7 +9,7 @@
             <p>Name: <%= @cat.name %></p>
             <p>Age: <%= @cat.age %></p>
             <p>Price: <%= @cat.format_price %></p>
-            <p><%= button_to "Add to Cart", carts_path(cat_id: @cat.id), class: "button btn" if @cat.status == "active" %></p>
+            <p><%= button_to "Add to Cart", carts_path(cat_id: @cat.id), class: "button btn" if @cat.active? %></p>
           </div>
           <div class="col m12">
             <p>Description: <%= @cat.description %></p>

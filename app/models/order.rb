@@ -1,9 +1,8 @@
 class Order < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   belongs_to :user
-  has_many :cat_orders, dependent: :destroy
+  has_many :cat_orders
   has_many :cats, through: :cat_orders
-  validates :status, presence: true
   enum status: %w(rented returned cancelled)
 
   def total
@@ -20,7 +19,7 @@ class Order < ActiveRecord::Base
     date.strftime("%b %d, %Y")
   end
 
-  def create_order(cart, start_date_params, end_date_params)
+  def create_order(cart, start_date_params, end_date_params) #needs model test
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
@@ -30,7 +29,7 @@ class Order < ActiveRecord::Base
     assign_attributes(end_date: Date.new(end_year, end_month, end_day))
   end
 
-  def range
+  def range #needs model test
     if start_date
       start_date.to_datetime..end_date.to_datetime
     end
@@ -42,7 +41,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def overdue?
+  def overdue? #needs model test
     if end_date
       status == "rented" && Date.today > end_date.to_datetime
     end

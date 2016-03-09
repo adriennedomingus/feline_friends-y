@@ -1,4 +1,4 @@
-<h4>Leave Review for <%= @cat.name %>!</h4><br />
+<h4>Leave a Review for <%= @cat.name %>!</h4><br />
 
 <%= form_for([@cat, Review.new], url: cat_reviews_path(@cat)) do |f| %>
   <%= select("review", "score", (1..5), {prompt: "Select Rating"}) %><br />

@@ -26,9 +26,13 @@ class Cart
     ![nil, 1].include?(contents[cat_id.to_s])
   end
 
-  def add_contents_to_cart(contents)
+  def cats
     contents.map do |cat, _|
       Cat.find(cat.to_i)
     end
+  end
+
+  def contains_cats?
+    !contents.empty?
   end
 end

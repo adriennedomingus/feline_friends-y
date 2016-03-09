@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col m9">
+    <div class="col m8">
       <h1>Your Cart</h1>
     </div>
     <div class="col m3 cart_total">
@@ -14,7 +14,7 @@
 
     <%= form_for @order do |f| %>
     <div class="row">
-      <div class="col m6">
+      <div class="col m6 start_date">
         <h5>Reservation Start Date</h5>
         <%= f.text_field :start_date, id: "start", class: "datepicker"%>
       </div>

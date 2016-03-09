@@ -2,6 +2,7 @@ class Cat < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
   belongs_to :category
+  has_many :reviews
   has_many :cat_orders
   has_many :orders, through: :cat_orders
   validates :name, presence: true, uniqueness: true
@@ -20,11 +21,19 @@ class Cat < ActiveRecord::Base
     all.sample
   end
 
-  def change_cat_status(cat)
-    if cat.status == "active"
-      cat.update_attribute(:status, "inactive")
+  def change_cat_status
+    if status == "active"
+      update_attribute(:status, "inactive")
     else
-      cat.update_attribute(:status, "active")
+      update_attribute(:status, "active")
     end
+  end
+
+  def reviews?
+    !reviews.empty?
+  end
+
+  def active?
+    status == "active"
   end
 end

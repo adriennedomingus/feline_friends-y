@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
   belongs_to :address
+  has_many :reviews
   accepts_nested_attributes_for :address
   validates :address_id, presence: true
 
@@ -9,5 +10,9 @@ class User < ActiveRecord::Base
 
   def format_address
     "#{address.street}, #{address.city}, #{address.state} #{address.zip} #{address.country}"
+  end
+
+  def has_orders?
+    !orders.empty?
   end
 end

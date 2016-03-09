@@ -29,7 +29,7 @@
       <th>Rented Orders (<%= Order.status_count(0) %>)</th>
     </tr>
       <% @orders.each do |order| %>
-        <% if order.rented? %>
+        <% if order.rented? && !order.overdue? %>
         <tr>
           <td><%= link_to "Order id: #{order.id}", admin_order_path(order) %></td>
           <td><%= render partial: "partials/order_update", locals: {status: "Return", order: order} %></td>

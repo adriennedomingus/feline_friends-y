@@ -27,7 +27,29 @@ RSpec.feature "view past orders in order index" do
   end
 
   scenario "returned and completed orders show action time" do
-    user, order = create_integration
+    user = create_users[:user1]
+    order = Order.create(status: 1,
+                         cancelled_at: "2016-03-02 11:10:57 -0700")
+    cat = Cat.create(
+      name: "Chica",
+      age: 2,
+      description: "Actually a dog",
+      image: image_path,
+      price: 2000,
+      category_id: categories[0].id,
+      status: "inactive")
+    cat2 = Cat.create(
+      name: "Caia",
+      age: 8,
+      description: "Chelsea's other cat",
+      image: image_path,
+      price: 3000,
+      category_id: categories[0].id,
+      status: "active")
+    CatOrder.create(order_id: order.id, cat_id: cat.id)
+    CatOrder.create(order_id: order.id, cat_id: cat2.id)
+    user.orders << order
+
 
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(user)

@@ -25,7 +25,7 @@ $( document ).ready(function(){
 
   var endDate = new Date();
   var startDate = new Date();
-  var dailyPrice = (parseInt($("#cart_price").text().replace("$", "")));
+  var dailyPrice = (parseInt($("#cart_price").text().replace("$", "").replace(/,/g, "")));
 
   $("#start").on("change", function(){
     var startMonth = getMonthFromString(($(this).val()).replace(/,/g, "").split(" ")[1]);

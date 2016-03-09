@@ -33,7 +33,7 @@
   <div>
     <% if @cat.active? && current_admin? %>
       <p><%= button_to "Change Status to Inactive", admin_path(@cat), method: "patch", class: "button btn" %></p>
-    <% else %>
+    <% elsif !@cat.active? && current_admin? %>
       <p><%= button_to "Change Status to Active", admin_path(@cat), method: "patch", class: "button btn" %></p>
     <% end %>
   </div>

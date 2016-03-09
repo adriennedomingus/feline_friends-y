@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def format_address
     "#{address.street}, #{address.city}, #{address.state} #{address.zip} #{address.country}"
   end
+
+  def has_orders?
+    !orders.empty?
+  end
 end

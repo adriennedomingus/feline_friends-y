@@ -61,7 +61,7 @@ RSpec.describe Cart, type: :model do
       cart.add_cat(cat1.id)
       cart.add_cat(cat2.id)
 
-      cats = cart.add_contents_to_cart(cart.contents)
+      cats = cart.cats
 
       expect(cats.first.name).to eq("Chica")
       expect(cats.last.name).to eq("Caia")

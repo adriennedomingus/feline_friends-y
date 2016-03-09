@@ -24,14 +24,12 @@ class Order < ActiveRecord::Base
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
-    # year, month, day = start_date_params
-    # end_year, end_month, end_day = end_date_params
-    assign_attributes(start_date: create_start_date(start_date_params))
-    assign_attributes(end_date: create_start_date(end_date_params))
+    assign_attributes(start_date: create_date(start_date_params))
+    assign_attributes(end_date: create_date(end_date_params))
   end
 
-  def create_start_date(date_params)
-    date = date_params.gsub(",", "").split.reverse
+  def create_date(date_params)
+    date = date_params.delete(",").split.reverse
     date[1] = Date::MONTHNAMES.index(date[1])
     Date.new(date[0].to_i, date[1], date[2].to_i)
   end

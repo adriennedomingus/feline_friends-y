@@ -7,9 +7,10 @@ RSpec.feature "user creates a reservation" do
     allow_any_instance_of(ApplicationController).
       to receive(:current_user).and_return(user)
 
-    visit cats_path
+    # visit cats_path
+    @cart = Cart.new({"1" => 1})
 
-    click_on "Add to Cart"
+    # click_on "Add to Cart"
 
     visit "/cart"
     page.execute_script("$('#start').val('21/12/2017')")

@@ -21,6 +21,14 @@ $( document ).ready(function(){
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
+   $("#start").on('change', function(){
+  //  var date = this.value;
+    // console.log(this)
+   console.log($(this).find(".picker__input").text())
+ });
+  //  $(".cart_total").css("background-color", "red");
+  //  $(".cart_total").text(date);
+  // difference / 24 / 60 / 6
 });
 
 $(document).ready(function() {

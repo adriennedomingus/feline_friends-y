@@ -2,6 +2,7 @@ class Cat < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
   belongs_to :category
+  has_many :reviews
   has_many :cat_orders
   has_many :orders, through: :cat_orders
   validates :name, presence: true, uniqueness: true
@@ -26,6 +27,10 @@ class Cat < ActiveRecord::Base
     else
       update_attribute(:status, "active")
     end
+  end
+
+  def reviews?
+    !reviews.empty?
   end
 
   def active?

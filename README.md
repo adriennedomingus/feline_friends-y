@@ -1,6 +1,4 @@
-README
-
-**Project Overview**
+* **Project Overview**  
 
   Feline Friends-y is an e-commerce site designed as the final project for Module 2 at the Turing School of Software and Design. The [Project Spec](https://github.com/turingschool/curriculum/blob/master/source/projects/little_shop.markdown) can be found here.
 

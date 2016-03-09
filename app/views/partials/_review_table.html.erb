@@ -1,0 +1,18 @@
+<h4> Reviews for <%= @cat.name %>!</h4><br />
+
+  <table class="bordered">
+    <tr>
+      <th>Review</th>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Comment</th>
+    </tr>
+  <% @cat.reviews.each_with_index do |review, index| %>
+    <tr>
+      <td><%= index += 1 %></td>
+      <td><%= review.user.name %></td>
+      <td><%=review.score%></td>
+      <td><%=review.comment%></td>
+    </tr>
+<% end %>
+  </table>

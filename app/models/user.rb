@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
   belongs_to :address
+  has_many :reviews
   accepts_nested_attributes_for :address
   validates :address_id, presence: true
 

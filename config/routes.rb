@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "landing#show"
 
-  resources :cats, only: [:index, :show]
+  resources :cats, only: [:index, :show] do
+    resources :reviews, only: [:new, :create]
+  end
 
   resources :categories, only: [:show], param: :name
 

@@ -36,4 +36,15 @@ RSpec.describe Cat, type: :model do
       expect(cat.status).to eq("inactive")
     end
   end
+  context "it tells if the cat has any reviews" do
+    it "returns true if the cat has reviews" do
+      cat = create_cat
+      cat.reviews.create(score: 4, comment: "This cat is awesome!")
+      expect(cat.reviews?).to be_truthy
+    end
+    it "returns false if the cat has no reviews" do
+      cat = create_cat
+      expect(cat.reviews?).to be_falsey
+    end
+  end
 end

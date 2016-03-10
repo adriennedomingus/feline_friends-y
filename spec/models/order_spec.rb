@@ -39,4 +39,29 @@ RSpec.describe Order, type: :model do
       expect(Order.reserved?(order2)).to eq(true)
     end
   end
+
+  context "creating a date" do
+    it "creates a date from params" do
+      order = Order.new
+      expect(order.create_date("3 March, 2016")).to eq(Date.new(2016, 03, 03))
+    end
+  end
+
+  context "date range" do
+    it "has a date range" do
+      order = Order.new(start_date: Date.new(2016, 03, 03),
+                        end_date: Date.new(2016, 05, 05))
+
+      expect(order.range).
+        to eq(DateTime.new(2016, 03, 03)..DateTime.new(2016, 05, 05))
+    end
+  end
+
+  context "overdue" do
+    it "knows whether it is overdue or not" do
+      order = Order.new(end_date: Date.new(2016, 01, 01))
+
+      expect(order.overdue?).to be_truthy
+    end
+  end
 end

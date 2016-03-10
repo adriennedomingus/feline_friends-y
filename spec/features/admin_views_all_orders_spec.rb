@@ -105,6 +105,28 @@ RSpec.feature "admin views all orders" do
     end
   end
 
+  scenario "cancelled cats have timestamp for action" do
+    order1, _, order3, order4 = create_user_orders
+
+    admin = create_admin
+
+    allow_any_instance_of(ApplicationController).
+      to receive(:current_user).and_return(admin)
+
+    visit admin_dashboard_path
+
+    click_on "Cancel"
+
+    within('#cancelled_cats') do
+      expect(page).to have_content("Order id: #{order3.id}")
+      expect(page).to have_content("Order id: #{order4.id}")
+      expect(page).to have_content("Order id: #{order1.id}")
+    end
+    click_on "Order id: #{order1.id}"
+
+    expect(page).to have_content("Cancelled on:")
+  end
+
   scenario "logged in admin return rented cat" do
     order1, order2, order3, order4 = create_user_orders
 

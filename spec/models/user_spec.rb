@@ -24,6 +24,5 @@ RSpec.describe User, type: :model do
       user = create_users[:user1]
       expect(user.has_orders?).to be_falsey
     end
-
   end
 end

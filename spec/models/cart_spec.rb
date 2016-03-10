@@ -85,6 +85,5 @@ RSpec.describe Cart, type: :model do
       cart = Cart.new({})
       expect(cart.contains_cats?).to be_falsey
     end
-
   end
 end

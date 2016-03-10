@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
     date.strftime("%b %d, %Y")
   end
 
-  def create_order(cart, start_date_params, end_date_params) #needs model test
+  def create_order(cart, start_date_params, end_date_params)
     cart.contents.keys.each do |cat|
       cats << Cat.find(cat.to_i)
     end
@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
     Date.new(date[0].to_i, date[1], date[2].to_i)
   end
 
-  def range #needs model test
+  def range
     if start_date
       start_date.to_datetime..end_date.to_datetime
     end
@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def overdue? #needs model test
+  def overdue?
     if end_date
       status == "rented" && Date.today > end_date.to_datetime
     end

@@ -30,12 +30,14 @@
           <th>Rental period:</th>
           <td><%= "#{@order.format_date(@order.start_date)} - #{@order.format_date(@order.end_date)}" %></td>
         </tr>
-      <% elsif @order.cancelled_at %>
+      <% end %>
+      <% if @order.cancelled_at %>
       <tr>
         <th>Cancelled on:</th>
         <td><%= @order.format_time(@order.cancelled_at)%></td>
       </tr>
-      <% elsif @order.returned_at %>
+      <% end %>
+      <% if @order.returned_at %>
       <tr>
         <th>Returned on:</th>
         <td><%= @order.format_time(@order.returned_at) %></td>
